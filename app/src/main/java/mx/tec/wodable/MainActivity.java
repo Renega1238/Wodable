@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     // shared prefs
     private SharedPreferences prefs;
 
-    Button user;
+    Button user, myprofile;
     TextView saludo;
 
     @Override
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         user = findViewById(R.id.userinfo);
         saludo = findViewById(R.id.saludohomepage);
+        myprofile = findViewById(R.id.myprofilebutton);
 
         saludo.setText(prefs.getString(NOMBRE_KEY, " ") + " " + prefs.getString(APELLIDO_KEY, " "));
 
@@ -52,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
         // Esperamos retorno
         startActivityForResult(user, USERINFO_CODE);
     }
+
+    public void myProfile(View v){
+
+        Intent myprofile = new Intent(this, ProfileInfoActivity.class);
+
+        startActivity(myprofile);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -69,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     prefs.getString(NOMBRE_KEY, "No hay saludo") + " " +
                     prefs.getString(APELLIDO_KEY, "No hay saludo"), Toast.LENGTH_SHORT).show();
         }
+        saludo.setText(prefs.getString(NOMBRE_KEY, " ") + " " + prefs.getString(APELLIDO_KEY, " "));
     }
 
 }

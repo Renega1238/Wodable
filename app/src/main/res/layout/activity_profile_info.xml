@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FDFDFD"
     tools:context=".ProfileInfoActivity">
 
     <TextView
         android:id="@+id/textView2"
+        android:textColor="#3C43CD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
@@ -87,7 +89,10 @@
         android:layout_marginEnd="36dp"
         android:text="Entrenamiento"
         app:layout_constraintEnd_toEndOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        android:background="@drawable/diseno_botones"
+        android:gravity="center"
+        android:textColor="@drawable/texto_botones"/>
 
     <Button
         android:id="@+id/button4"
@@ -97,7 +102,10 @@
         android:layout_marginTop="36dp"
         android:text="Control peso"
         app:layout_constraintStart_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        android:background="@drawable/diseno_botones"
+        android:gravity="center"
+        android:textColor="@drawable/texto_botones"/>
 
     <Button
         android:id="@+id/button5"
@@ -107,6 +115,9 @@
         android:text="Registrar nueva carrera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        android:background="@drawable/diseno_botones"
+        android:gravity="center"
+        android:textColor="@drawable/texto_botones"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
