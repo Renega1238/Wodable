@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wodable">
-        <activity android:name=".UserInfo"></activity>
+        <activity android:name=".ProfileInfoActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".UserInfo" />
         <activity android:name=".LoadingScreen">
             // Cambiamos el intent filter de main a aqui, para que cargue primero
             <intent-filter>
@@ -18,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
