@@ -18,14 +18,34 @@
         android:background="@drawable/diseno_botones"
         android:gravity="center"
         android:onClick="user"
-        android:text="USER"
+        android:text="SALUDO"
         android:textColor="@drawable/texto_botones" />
     <TextView
         android:id="@+id/saludohomepage"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
+        android:layout_marginLeft="190dp"
         android:layout_height="wrap_content"
         android:text="TextView"
         android:background="#605F5F"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="163dp"
+        app:srcCompat="@drawable/ejercicio1" />
+
+    <Button
+        android:id="@+id/myprofilebutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/diseno_botones"
+        android:gravity="center"
+        android:textColor="@drawable/texto_botones"
+        android:onClick="myProfile"
+        android:text="My Profile"
+         />
 
 
 </LinearLayout>
