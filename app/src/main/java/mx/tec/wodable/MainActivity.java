@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Intent user = new Intent(this, UserInfo.class);
         // Esperamos retorno
         startActivityForResult(user, USERINFO_CODE);
+
     }
 
     public void myProfile(View v){
