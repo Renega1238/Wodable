@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Esperamos retorno
         startActivityForResult(user, USERINFO_CODE);
+
     }
 
     public void myProfile(View v){

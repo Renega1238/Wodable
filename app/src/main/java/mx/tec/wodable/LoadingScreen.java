@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 public class LoadingScreen extends AppCompatActivity {
 
     ProgressBar progressBar;
