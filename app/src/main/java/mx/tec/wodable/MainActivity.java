@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView saludo;
 
     @Override
+    //Actividad principal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
