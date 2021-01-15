@@ -10,7 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wodable">
-        <activity android:name=".ProfileInfoActivity"></activity>
+        <activity android:name=".RecentActivity"></activity>
+
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+        <activity android:name=".ProfileInfoActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".UserInfo" />
         <activity android:name=".LoadingScreen">
