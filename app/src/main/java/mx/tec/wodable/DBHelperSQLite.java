@@ -217,6 +217,22 @@ public class DBHelperSQLite extends SQLiteOpenHelper {
         }
 
     }
+    //Update
+    /*public int updateUserProfilePicture(ADT_Usuarios usuario, ADT_AtributosFisicos atributos) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+
+        values.put(KEY_FECHA_NACIMIENTO , atributos.getFecha_nacimiento());
+        values.put(KEY_PESO , atributos.profilePictureUrl);
+        values.put(KEY_GENERO  , atributos.usuarioprofilePictureUrl);
+
+
+        // Updating profile picture url for user with that userName
+        return db.update(TABLE_ATRIBUTOS_FISICOS, values, KEY_ID_USUARIO_ATRIBUTOS  + " = ?",
+                new String[] { String.valueOf(usuario.get) });
+    }*/
 
 
     // Get all users in the database
