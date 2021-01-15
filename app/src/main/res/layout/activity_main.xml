@@ -47,5 +47,15 @@
         android:text="My Profile"
          />
 
+    <Button
+        android:id="@+id/myracesbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/diseno_botones"
+        android:gravity="center"
+        android:textColor="@drawable/texto_botones"
+        android:text="My races" />
+
 
 </LinearLayout>
