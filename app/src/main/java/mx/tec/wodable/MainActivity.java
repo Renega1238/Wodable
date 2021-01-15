@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Esperamos retorno
         startActivityForResult(user, USERINFO_CODE);
+
     }
 
     public void myProfile(View v){
@@ -79,10 +80,6 @@ public class MainActivity extends AppCompatActivity {
                     prefs.getString(APELLIDO_KEY, "No hay saludo"), Toast.LENGTH_SHORT).show();
         }
         saludo.setText(prefs.getString(NOMBRE_KEY, " ") + " " + prefs.getString(APELLIDO_KEY, " "));
-    }
-
-    public void hola(View v){
-        
     }
 
 }
