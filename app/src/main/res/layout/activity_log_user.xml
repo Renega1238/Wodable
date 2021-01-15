@@ -76,8 +76,8 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/diseno_botones"
         android:gravity="center"
-        android:onClick="loginStart"
+        android:onClick="iniciarSesion"
         android:text="Iniciar Sesion"
-        android:textColor="@drawable/texto_botones" />
+        android:textColor="@color/white" />
 
 </LinearLayout>

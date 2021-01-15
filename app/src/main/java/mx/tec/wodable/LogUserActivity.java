@@ -53,6 +53,7 @@ public class LogUserActivity extends AppCompatActivity {
     public void iniciarSesion(View v){
 
         Intent main = new Intent(this, MainActivity.class);
+        main.putExtra("NAME",nombreentry.getText().toString());
         startActivity(main);
     }
 
