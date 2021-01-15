@@ -74,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(myprofile);
     }
+    
+    public void myRaces(View v){
+        Intent myRaces = new Intent(this, RecentActivity.class);
+        startActivity(myRaces);
+    }
 
 
     @Override

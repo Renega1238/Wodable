@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mx.tec.wodable">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,14 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wodable">
-
         <activity android:name=".edit_info_personal"></activity>
+        <activity android:name=".RaceDetailsActivity"></activity>
         <activity android:name=".LogUserActivity"></activity>
         <activity android:name=".RecentActivity" />
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
         <activity android:name=".ProfileInfoActivity" />
         <activity android:name=".UserInfo" />
         <activity android:name=".LoadingScreen">
