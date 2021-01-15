@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -110,13 +111,13 @@ public class MainActivity extends AppCompatActivity {
         ADT_Recorridos recorrido3 = new ADT_Recorridos("2021-01-12 09:20:14","2021-01-12 10:20:10",30000,2000,1);
         ADT_Recorridos recorrido4 = new ADT_Recorridos("2021-01-13 11:20:14","2021-01-13 12:20:10",40000,3000,2);
         ADT_Recorridos recorrido5 = new ADT_Recorridos("2021-01-14 13:20:14","2021-01-14 14:20:10",50000,4000,2);
-        ADT_Recorridos recorrido6 = new ADT_Recorridos("2021-01-14 13:20:14","2021-01-14 14:20:10",50000,4000,3);
-        ADT_Recorridos recorrido7 = new ADT_Recorridos("2021-01-14 15:20:14","2021-01-14 16:20:10",50000,4000,3);
-        ADT_Recorridos recorrido8 = new ADT_Recorridos("2021-01-14 17:20:14","2021-01-14 18:20:10",50000,4000,3);
-        ADT_Recorridos recorrido9 = new ADT_Recorridos("2021-01-14 17:20:14","2021-01-14 18:20:10",50000,4000,4);
-        ADT_Recorridos recorrido10 = new ADT_Recorridos("2021-01-14 11:20:14","2021-01-14 12:20:10",50000,4000,5);
-        ADT_Recorridos recorrido11 = new ADT_Recorridos("2021-01-14 13:20:14","2021-01-14 14:20:10",50000,4000,5);
-        ADT_Recorridos recorrido12 = new ADT_Recorridos("2021-01-14 15:20:14","2021-01-14 16:20:10",50000,4000,5);
+        ADT_Recorridos recorrido6 = new ADT_Recorridos("2021-01-14 13:20:14","2021-01-14 14:20:10",60000,5000,3);
+        ADT_Recorridos recorrido7 = new ADT_Recorridos("2021-01-14 15:20:14","2021-01-14 16:20:10",70000,6000,3);
+        ADT_Recorridos recorrido8 = new ADT_Recorridos("2021-01-14 17:20:14","2021-01-14 18:20:10",80000,7000,3);
+        ADT_Recorridos recorrido9 = new ADT_Recorridos("2021-01-14 17:20:14","2021-01-14 18:20:10",90000,8000,4);
+        ADT_Recorridos recorrido10 = new ADT_Recorridos("2021-01-14 11:20:14","2021-01-14 12:20:10",100000,9000,5);
+        ADT_Recorridos recorrido11 = new ADT_Recorridos("2021-01-14 13:20:14","2021-01-14 14:20:10",110000,10000,5);
+        ADT_Recorridos recorrido12 = new ADT_Recorridos("2021-01-14 15:20:14","2021-01-14 16:20:10",120000,11000,5);
 
 
 
@@ -156,11 +157,72 @@ public class MainActivity extends AppCompatActivity {
 
 
         List<ADT_Usuarios> usuarios = db_test.getAllUsers();
+        List<ADT_Recorridos> recorridos = db_test.getAllRecorridos();
+        List<ADT_AtributosFisicos> atributos = db_test.getAllAtributos();
 
-        for (ADT_Usuarios user: usuarios) {
-            Toast.makeText(this, user.getNombre(), Toast.LENGTH_SHORT).show();
+        for (ADT_Usuarios usuario: usuarios) {
+            Toast.makeText(this, usuario.getNombre(), Toast.LENGTH_SHORT).show();
+
         }
 
+        for (ADT_Recorridos recorrido: recorridos) {
+            Toast.makeText(this, recorrido.getPasos(), Toast.LENGTH_SHORT).show();
+        }
+
+        for (ADT_AtributosFisicos atributo: atributos) {
+            Toast.makeText(this, "" +atributo.getAltura(), Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public int validarUsuario(String username){
+
+        List<ADT_Usuarios> usuarios = db_test.getAllUsers();
+
+        for(ADT_Usuarios user: usuarios){
+            if(username.equals(user.getUsername())){
+                    return usuarios.indexOf(user);
+            }
+        }
+        return -1;
+    }
+
+    public ADT_Usuarios validarContrasena(String username, String password){
+
+        try{
+            List<ADT_Usuarios> usuarios = db_test.getAllUsers();
+            int user_id = validarUsuario(username);
+
+            ADT_Usuarios  cuenta = usuarios.get(user_id);
+            if(cuenta.getPassword().equals(password))
+                return cuenta;
+
+        } catch(NullPointerException e)
+        {
+            Log.d("My activity", "Error in validarContrasena " + e);
+        }
+
+        return null;
+    }
+
+    public List<ADT_Recorridos> duracionDistanciaUltmoRecorrido(String username){
+
+        List<ADT_Recorridos> recorridos = db_test.getAllRecorridos();
+        List<ADT_Recorridos> recorridos_del_usuario;
+
+
+        int user_id = validarUsuario(username);
+
+        try{
+
+
+
+        } catch(NullPointerException e)
+        {
+            Log.d("My activity", "Error in duracionDistanciaUltmoRecorrido " + e);
+        }
+
+        return null;
     }
 
 }
