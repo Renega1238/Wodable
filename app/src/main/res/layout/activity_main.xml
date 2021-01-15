@@ -19,7 +19,7 @@
         android:gravity="center"
         android:onClick="cargarDatos"
         android:text="SALUDO"
-        android:textColor="@drawable/texto_botones" />
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/saludohomepage"
@@ -43,9 +43,9 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/diseno_botones"
         android:gravity="center"
-        android:onClick="findByUserName"
+        android:onClick="myProfile"
         android:text="My Profile"
-        android:textColor="@drawable/texto_botones" />
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/lastRecorrido"
