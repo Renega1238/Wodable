@@ -54,8 +54,9 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/diseno_botones"
         android:gravity="center"
-        android:textColor="@drawable/texto_botones"
-        android:text="My races" />
+        android:onClick="myRaces"
+        android:text="My races"
+        android:textColor="@drawable/texto_botones" />
 
 
 </LinearLayout>

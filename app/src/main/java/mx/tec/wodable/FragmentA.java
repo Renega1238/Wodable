@@ -1,5 +1,6 @@
 package mx.tec.wodable;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,10 +32,16 @@ public class FragmentA extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    // NOTE: Vars to work with Strings
     ListView lv;
     SearchView sv;
     ArrayAdapter<String> adapter;
     String[] data = {"R1","R2","R3"};
+
+    // NOTE: Vars to work with Fragments
+    ArrayList<RaceCardFragment> myRaceCards = new ArrayList<RaceCardFragment>();
+    int racesFound = 3;
+
 
 
     public FragmentA() {
@@ -72,7 +81,9 @@ public class FragmentA extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_a,container,false);
         lv = (ListView) v.findViewById(R.id.fragmentList);
-        // INSERT INTO DATA ARRAY
+        // NOTE: WORKING WITH STRINGS ONLY
+        /*
+            // INSERT INTO DATA ARRAY
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,data);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,6 +92,15 @@ public class FragmentA extends Fragment {
             }
         });
         lv.setAdapter(adapter);
+         */
+
+        //NOTE: Testing with RaceCardFragment
+        Context ctx = getActivity();
+        for (int i = 0;i<racesFound;i++){
+            RaceCardFragment newCard = RaceCardFragment.newInstance("5.5","11/01/2021","30:30");
+            myRaceCards.add(newCard);
+        }
+
         // Inflate the layout for this fragment
         return v;
 
