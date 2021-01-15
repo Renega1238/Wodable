@@ -17,6 +17,7 @@ import android.widget.Toolbar;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -206,17 +207,21 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    public List<ADT_Recorridos> duracionDistanciaUltmoRecorrido(String username){
+    public List<ADT_Recorridos> recorridosByUserName(String username){
 
         List<ADT_Recorridos> recorridos = db_test.getAllRecorridos();
-        List<ADT_Recorridos> recorridos_del_usuario;
-
+        List<ADT_Recorridos>  recorridos_del_usuario = new ArrayList<>();
 
         int user_id = validarUsuario(username);
 
         try{
+            for(ADT_Recorridos recorrido: recorridos){
+                if(user_id==recorrido.getId_usuario()){
+                    recorridos_del_usuario.add(recorrido);
+                }
+            }
 
-
+            return recorridos_del_usuario;
 
         } catch(NullPointerException e)
         {
