@@ -81,4 +81,8 @@ public class MainActivity extends AppCompatActivity {
         saludo.setText(prefs.getString(NOMBRE_KEY, " ") + " " + prefs.getString(APELLIDO_KEY, " "));
     }
 
+    public void hola(View v){
+        
+    }
+
 }
