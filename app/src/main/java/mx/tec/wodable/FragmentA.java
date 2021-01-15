@@ -82,7 +82,6 @@ public class FragmentA extends Fragment {
         View v = inflater.inflate(R.layout.fragment_a,container,false);
         lv = (ListView) v.findViewById(R.id.fragmentList);
         // NOTE: WORKING WITH STRINGS ONLY
-        /*
             // INSERT INTO DATA ARRAY
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,data);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -92,15 +91,15 @@ public class FragmentA extends Fragment {
             }
         });
         lv.setAdapter(adapter);
-         */
 
+        /*
         //NOTE: Testing with RaceCardFragment
         Context ctx = getActivity();
         for (int i = 0;i<racesFound;i++){
             RaceCardFragment newCard = RaceCardFragment.newInstance("5.5","11/01/2021","30:30");
             myRaceCards.add(newCard);
         }
-
+        */
         // Inflate the layout for this fragment
         return v;
 
