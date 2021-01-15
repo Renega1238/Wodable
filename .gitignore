@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+/app/src/main/java/mx/tec/wodable/DBAtributosFisicos.java
+/app/src/main/java/mx/tec/wodable/DBConnection.java
+/app/src/main/java/mx/tec/wodable/DBRecorridos.java
+/app/src/main/java/mx/tec/wodable/DBTest.java
+/app/src/main/java/mx/tec/wodable/DBUsuarios.java

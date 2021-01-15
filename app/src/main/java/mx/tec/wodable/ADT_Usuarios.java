@@ -22,6 +22,15 @@ public class ADT_Usuarios {
         this.apellido = apellido;
     }
 
+    public ADT_Usuarios( String username, String password, String correo, String nombre, String apellido) {
+
+        this.username = username;
+        this.password = password;
+        this.correo = correo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
     public int getId_usuario() {
         return id_usuario;
     }

@@ -1,5 +1,8 @@
 package mx.tec.wodable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ADT_Recorridos {
 
     private int id_carrera;
@@ -18,6 +21,30 @@ public class ADT_Recorridos {
         this.distancia = distancia;
         this.pasos = pasos;
         this.id_usuario = id_usuario;
+    }
+
+    public ADT_Recorridos(String timestamp_inicio, String timestamp_final, int distancia, int pasos, int id_usuario) {
+
+        this.timestamp_inicio = timestamp_inicio;
+        this.timestamp_final = timestamp_final;
+        this.distancia = distancia;
+        this.pasos = pasos;
+        this.id_usuario = id_usuario;
+    }
+
+
+    public static String getCurrentTimeStamp(){
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentTimeStamp = dateFormat.format(new Date()); // Find todays date
+
+            return currentTimeStamp;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
     }
 
     public int getId_carrera() {

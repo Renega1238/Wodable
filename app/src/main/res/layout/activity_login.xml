@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="7dp"
-        android:onClick="interaccion"
+        android:onClick="findByUserName"
         android:text="Iniciar sesión"
         app:layout_constraintBaseline_toBaselineOf="@+id/button1"
         app:layout_constraintEnd_toEndOf="parent"

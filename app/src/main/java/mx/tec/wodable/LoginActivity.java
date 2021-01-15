@@ -15,6 +15,12 @@ public class LoginActivity extends AppCompatActivity {
     TextView bienvenida;
     EditText usuario, contrasena;
     Button registro,entrar;
+
+    // Un nuevo user es creado en ADT_Usuario
+    // Se usa como objeto dummy para extrar la query de SQL
+    // con sus valores de objeto getters y setters
+
+
     private static final int ACTIVITY2_CODE=0;
 
     @Override
@@ -35,4 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         intento.putExtra("usuario",usuario.getText().toString());
         startActivityForResult(intento,ACTIVITY2_CODE);
     }
+
+
 }

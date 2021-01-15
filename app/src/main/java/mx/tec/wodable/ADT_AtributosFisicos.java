@@ -1,5 +1,9 @@
 package mx.tec.wodable;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ADT_AtributosFisicos {
 
     private int id_atributos;
@@ -14,6 +18,14 @@ public class ADT_AtributosFisicos {
 
     public ADT_AtributosFisicos(int id_atributos, String fecha_nacimiento, float peso, float altura, String genero, int id_usuario) {
         this.id_atributos = id_atributos;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.peso = peso;
+        this.altura = altura;
+        this.genero = genero;
+        this.id_usuario = id_usuario;
+    }
+
+    public ADT_AtributosFisicos( String fecha_nacimiento, float peso, float altura, String genero, int id_usuario) {
         this.fecha_nacimiento = fecha_nacimiento;
         this.peso = peso;
         this.altura = altura;
@@ -67,5 +79,19 @@ public class ADT_AtributosFisicos {
 
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public static String getBirthDayToday(){
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String currentTimeStamp = dateFormat.format(new Date()); // Find todays date
+
+            return currentTimeStamp;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
     }
 }
