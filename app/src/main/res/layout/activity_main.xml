@@ -19,7 +19,7 @@
         android:gravity="center"
         android:onClick="cargarDatos"
         android:text="SALUDO"
-        android:textColor="@color/white"
+        android:textColor="@drawable/texto_botones"
         android:visibility="invisible" />
 
     <TextView
@@ -47,29 +47,36 @@
         android:gravity="center"
         android:onClick="myProfile"
         android:text="My Profile"
-        android:textColor="@color/white" />
-
-    <TextView
-        android:id="@+id/lastRecorrido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textColor="@drawable/texto_botones"
+        />
 
     <Button
         android:id="@+id/myracesbutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/diseno_botones"
         android:gravity="center"
         android:onClick="myRaces"
         android:text="My races"
-        android:textColor="@color/white" />
+        android:textColor="@drawable/texto_botones" />
+
+    <Button
+        android:id="@+id/ActivityDailySteps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:onClick="dailySteps"
+        android:text="Daily Steps"
+        android:textColor="@drawable/texto_botones" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:onClick="beginRace"
         app:srcCompat="@drawable/go" />
 

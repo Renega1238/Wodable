@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mx.tec.wodable">
 
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,9 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wodable">
-        <activity android:name=".edit_info_personal"></activity>
-        <activity android:name=".RaceDetailsActivity"></activity>
-        <activity android:name=".LogUserActivity"></activity>
+        <activity android:name=".DailyStepsActivity"></activity>
+        <activity android:name=".edit_info_personal" />
+        <activity android:name=".RaceDetailsActivity" />
+        <activity android:name=".LogUserActivity" />
         <activity android:name=".RecentActivity" />
         <activity android:name=".ProfileInfoActivity" />
         <activity android:name=".UserInfo" />
