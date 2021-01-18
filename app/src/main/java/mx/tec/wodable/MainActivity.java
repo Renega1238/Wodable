@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int USERINFO_CODE = 1;
     private static final int DAILYSTEPS_CODE = 2;
+    private static final int NEWRACE_CODE = 3;
 
     //private DBHelperSQLite db_test;
     // Vamos a crear el archivo local
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button user, myprofile, dailysteps;
     TextView saludo;
+    ImageButton newRace;
 
     @Override
     //Actividad principal
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         saludo = findViewById(R.id.saludohomepage);
         myprofile = findViewById(R.id.myprofilebutton);
         dailysteps = findViewById(R.id.ActivityDailySteps);
+        newRace = findViewById(R.id.MainActivityNewRace);
 
 
         Intent intento = getIntent();
@@ -61,7 +64,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void beginRace(View v){
-        Toast.makeText(this,"Podometer unavailable",Toast.LENGTH_SHORT);
+
+        Intent newRace = new Intent(this, RaceActivity.class);
+
+        startActivityForResult(newRace, NEWRACE_CODE);
+
     }
 
     public void user(View v ){

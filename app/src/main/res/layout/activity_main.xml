@@ -43,11 +43,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/diseno_botones"
         android:gravity="center"
         android:onClick="myProfile"
         android:text="My Profile"
         android:textColor="@drawable/texto_botones"
+        android:background="@drawable/diseno_botones"
         />
 
     <Button
@@ -66,14 +66,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
         android:gravity="center"
         android:layout_marginTop="15dp"
         android:onClick="dailySteps"
         android:text="Daily Steps"
-        android:textColor="@drawable/texto_botones" />
+         />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/MainActivityNewRace"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

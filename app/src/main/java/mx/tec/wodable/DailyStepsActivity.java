@@ -88,7 +88,7 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            progressBar.setProgress(Integer.parseInt(pasos.getText().toString()));
+                            progressBar.setProgress(Integer.parseInt(pasos.getText().toString()));  //pasos
                         }
                     });
                     try{

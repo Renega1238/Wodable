@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ddd"
+    tools:context=".JustRunFragment" >
+
+
+    <TextView
+        android:id="@+id/JustRunFragmentTiempo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:text="00:00:00" />
+
+    <TextView
+        android:id="@+id/JustRunFragmentPasos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="350dp"
+        android:textColor="#000000"
+        android:textSize="35dp"
+        android:text="PASOS" />
+
+    <TextView
+        android:id="@+id/JustRunFragmentDistancia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="300dp"
+        android:textColor="#000000"
+        android:textSize="35dp"
+        android:text="DISTANCIA" />
+
+
+    <Button
+        android:id="@+id/JustRunFragmentStartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="200dp"
+        android:layout_centerHorizontal="true"
+        android:text="START" />
+
+    <Button
+        android:id="@+id/JustRunFragmentResetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="140dp"
+        android:layout_marginLeft="100dp"
+        android:text="RESET" />
+
+    <Button
+        android:id="@+id/JustRunFragmentStopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="140dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="100dp"
+        android:text="STOP" />
+
+    <Button
+        android:id="@+id/JustRunFragmentExitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:layout_centerHorizontal="true"
+        android:text="EXIT" />
+
+
+</RelativeLayout>
