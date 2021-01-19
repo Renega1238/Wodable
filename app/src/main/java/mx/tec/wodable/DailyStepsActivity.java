@@ -89,6 +89,7 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
                         @Override
                         public void run() {
                             progressBar.setProgress(Integer.parseInt(pasos.getText().toString()));  //pasos
+                            progressBar.setMax(Integer.parseInt(meta.getText().toString()));
                         }
                     });
                     try{
@@ -119,9 +120,11 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
         if(!isDigit(update.getText().toString())){
             Toast.makeText(this, "Porfavor ingresa un numero entero mayor a 0", Toast.LENGTH_SHORT).show();
         }else{
+
             // Flag para saber si sumar o reemplazar
             distancia.setText("Calculando....");
             flag = 1;
+            //progressBar.setMax(Integer.parseInt(meta.getText().toString()));
             meta.setText(update.getText().toString());
             pasos.setText("0");
             //Guardamos la meta anterior
@@ -130,6 +133,7 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
             editor.putInt(METAANTERIOR, Integer.parseInt(meta.getText().toString()));
             editor.commit();
             pasosdado = 0;
+            //progressBar.setProgress(Integer.parseInt(meta.getText().toString()));
             sensorManager.registerListener(DailyStepsActivity.this,accel, SensorManager.SENSOR_DELAY_FASTEST);
 
         }
@@ -157,10 +161,12 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
                 }
             });
             builder.show();
+
         }else{
 
             flag = 2;
             distancia.setText("Calculando....");
+            //progressBar.setMax(Integer.parseInt(meta.getText().toString()));
             pasos.setText(String.valueOf(pasosprefs.getInt(PASOSANTERIORES, 0)));
             meta.setText(String.valueOf(pasosprefs.getInt(METAANTERIOR, 0)));
             pasosdado = pasosprefs.getInt(PASOSANTERIORES,0);

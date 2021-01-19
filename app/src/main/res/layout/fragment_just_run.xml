@@ -27,7 +27,7 @@
         android:layout_marginBottom="350dp"
         android:textColor="#000000"
         android:textSize="35dp"
-        android:text="PASOS" />
+        android:text="0" />
 
     <TextView
         android:id="@+id/JustRunFragmentDistancia"
@@ -38,7 +38,7 @@
         android:layout_marginBottom="300dp"
         android:textColor="#000000"
         android:textSize="35dp"
-        android:text="DISTANCIA" />
+        android:text="0.0 Km" />
 
 
     <Button
