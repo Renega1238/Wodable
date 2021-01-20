@@ -50,8 +50,13 @@ public class MainActivity extends AppCompatActivity {
         myprofile = findViewById(R.id.myprofilebutton);
 
 
-        //saludo.setText();
+        Intent intento = getIntent();
+        saludo.setText("Hola "+intento.getStringExtra("NAME")+"!");
 
+    }
+
+    public void beginRace(View v){
+        Toast.makeText(this,"Podometer unavailable",Toast.LENGTH_SHORT);
     }
 
     public void user(View v ){
