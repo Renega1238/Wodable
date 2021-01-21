@@ -23,10 +23,8 @@
 
         <activity android:name=".edit_info_personal" />
         <activity android:name=".RaceDetailsActivity" />
-        <activity android:name=".LogUserActivity" />
         <activity android:name=".RecentActivity" />
         <activity android:name=".ProfileInfoActivity" />
-        <activity android:name=".UserInfo" />
 
         <activity android:name=".LoadingScreen">
             <intent-filter>
@@ -35,7 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
