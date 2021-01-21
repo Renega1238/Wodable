@@ -14,6 +14,8 @@
         android:layout_marginBottom="195dp"
         android:text="Registrarse"
         android:visibility="invisible"
+        android:textColor="@drawable/texto_botones"
+        android:background="@drawable/diseno_botones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -29,6 +31,8 @@
         android:text="Iniciar sesión"
         app:layout_constraintBaseline_toBaselineOf="@+id/button1"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@drawable/texto_botones"
+        android:background="@drawable/diseno_botones"
         app:layout_constraintStart_toEndOf="@+id/button1" />
 
     <TextView

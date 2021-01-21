@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ddd"
+    tools:context=".RaceActivity">
+
+    <Button
+        android:id="@+id/RaceJustRun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:gravity="center"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="16dp"
+        android:onClick="JustRun"
+        android:text="RUN!" />
+
+    <Button
+        android:id="@+id/RaceRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:onClick="RouteMap"
+        android:text="set route" />
+
+    <RelativeLayout
+        android:id="@+id/JustRunFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ddd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </RelativeLayout>
+</RelativeLayout>
