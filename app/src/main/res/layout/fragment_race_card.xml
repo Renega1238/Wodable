@@ -43,6 +43,12 @@
                 android:layout_marginLeft="15dp"
                 android:layout_alignParentTop="true"
                 android:id="@+id/raceCardTime"/>
+
+            <Button
+                android:id="@+id/raceDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button" />
         </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
