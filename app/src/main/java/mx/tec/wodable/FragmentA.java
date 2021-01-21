@@ -36,7 +36,7 @@ public class FragmentA extends Fragment {
     ListView lv;
     SearchView sv;
     ArrayAdapter<String> adapter;
-    String[] data = {"R1","R2","R3"};
+    String[] data = {"Race - 13/01/2021 \n 4.5 km","Race - 12/01/2021 \n 5.1 km","Race - 11/01/2021 \n 3.7 km"};
 
     // NOTE: Vars to work with Fragments
     ArrayList<RaceCardFragment> myRaceCards = new ArrayList<RaceCardFragment>();

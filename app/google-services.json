@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "427970799788",
+    "project_id": "wodable-32444",
+    "storage_bucket": "wodable-32444.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427970799788:android:78c0a8d09f5d261d43d709",
+        "android_client_info": {
+          "package_name": "mx.tec.wodable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427970799788-toef8lrd02jg3f870j3nca1ff2kq728n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8PVr_jNGvPsmjNxHXX-5weT9nzmzt8Kg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427970799788-toef8lrd02jg3f870j3nca1ff2kq728n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

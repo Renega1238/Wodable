@@ -10,60 +10,70 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="64dp"
         android:text="Editor de datos personales"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#070707"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="64dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextPeso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
         android:ems="10"
+        android:hint="Weight"
         android:inputType="textPersonName"
-        android:text="Peso"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="286dp" />
+        app:layout_constraintStart_toStartOf="@+id/editTextGenero"
+        app:layout_constraintTop_toBottomOf="@+id/editTextGenero" />
 
     <EditText
         android:id="@+id/editTextAltura"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:ems="10"
+        android:hint="Height"
         android:inputType="textPersonName"
-        android:text="Altura"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="343dp" />
+        app:layout_constraintStart_toStartOf="@+id/editTextPeso"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPeso" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonAct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:onClick="actualizarDatos"
         android:text="Actualizar"
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="423dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAltura" />
 
     <EditText
         android:id="@+id/editTextGenero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:ems="10"
+        android:hint="Gender"
         android:inputType="textPersonName"
-        android:text="Genero"
         android:textColor="#0B0A0A"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="223dp" />
+        app:layout_constraintStart_toStartOf="@+id/editTextDate"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
     <EditText
         android:id="@+id/editTextDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="154dp"
         android:ems="10"
         android:hint="Fecha de nacimiento"
         android:inputType="date"
         android:textColor="#121111"
         android:textColorHint="#0B0A0A"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="154dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

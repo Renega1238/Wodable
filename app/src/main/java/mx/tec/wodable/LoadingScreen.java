@@ -2,13 +2,15 @@ package mx.tec.wodable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.Intent;
+
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class LoadingScreen extends AppCompatActivity {
 
     ProgressBar progressBar;
@@ -28,6 +30,9 @@ public class LoadingScreen extends AppCompatActivity {
         progressBar.setMax(100);
         progressBar.setScaleY(3f);
         progressBarAnimation();
+
+
+
     }
 
     public void progressBarAnimation(){
