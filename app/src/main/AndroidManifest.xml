@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wodable">
-        <activity android:name=".edit_info_personal"></activity>
-        <activity android:name=".RaceDetailsActivity"></activity>
-        <activity android:name=".LogUserActivity"></activity>
+        <activity android:name=".EjerciciosActivity"></activity>
+        <activity android:name=".edit_info_personal" />
+        <activity android:name=".RaceDetailsActivity" />
+        <activity android:name=".LogUserActivity" />
         <activity android:name=".RecentActivity" />
         <activity android:name=".ProfileInfoActivity" />
         <activity android:name=".UserInfo" />
