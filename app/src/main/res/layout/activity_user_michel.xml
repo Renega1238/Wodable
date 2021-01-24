@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".UserActivity_Michel">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="288dp"
+        android:layout_height="248dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/ejercicio1"
+        android:layout_marginTop="50dp"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="144dp" />
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:text="Correo"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="241dp"
+        tools:layout_editor_absoluteY="16dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGOUT"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:gravity="center"
+        android:textColor="@drawable/texto_botones"
+        android:background="@drawable/diseno_botones"/>
+
+    <TextView
+        android:id="@+id/nombreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nombre"
+        android:textSize="12sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="16dp"
+        tools:layout_editor_absoluteX="241dp"
+        tools:layout_editor_absoluteY="77dp" />
+
+    <Button
+        android:id="@+id/myprofilebutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:onClick="myProfile"
+        android:text="My Profile"
+        android:textColor="@drawable/texto_botones"
+        android:background="@drawable/diseno_botones"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="312dp"
+        />
+
+    <Button
+        android:id="@+id/myracesbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:gravity="center"
+        android:onClick="myRaces"
+        android:text="My races"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="255dp"
+        />
+
+    <Button
+        android:id="@+id/ActivityDailySteps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:onClick="dailySteps"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="200dp"
+        android:text="Daily Steps"
+        />
+
+    <ImageButton
+        android:id="@+id/MainActivityNewRace"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginTop="20dp"
+        android:onClick="beginRace"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="35dp"
+        app:srcCompat="@drawable/go" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Begin new race"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center" />
+</RelativeLayout>
