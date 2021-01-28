@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
     android:orientation="vertical"
-
     android:paddingLeft="90dp"
     android:paddingTop="80dp"
     tools:context=".edit_info_personal">
