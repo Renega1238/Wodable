@@ -117,8 +117,8 @@ public class edit_info_personal extends AppCompatActivity implements NumberPicke
     @Override
     protected void onStop() {
         super.onStop();
-        if(!success || SignUpActivity_Michel.isNewUser())
-        actualizarDatos("70 kg.","1.70 m.", "Hombre", "1-1-1994");
+        //if(!success || SignUpActivity_Michel.isNewUser())
+        //actualizarDatos("70 kg.","1.70 m.", "Hombre", "1-1-1994");
     }
 
     @Override

@@ -143,9 +143,9 @@ public class ProfileInfoActivity extends AppCompatActivity {
     }
 
     public void goToMenuGrid(View v){
-        //Intent irAlMenu =new Intent(this, menu_grid.class);
-        //startActivity(irAlMenu);
-        //finish();
+        Intent irAlMenu =new Intent(this, EjerciciosActivity.class);
+        startActivity(irAlMenu);
+        finish();
     }
 
     public void logOut(View v){

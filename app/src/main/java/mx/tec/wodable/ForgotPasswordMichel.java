@@ -81,8 +81,6 @@ public class ForgotPasswordMichel extends AppCompatActivity {
                             }
                     }
                 });
-
-
     }
 
 
