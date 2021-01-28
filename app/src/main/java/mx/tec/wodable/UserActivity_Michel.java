@@ -94,8 +94,6 @@ public class UserActivity_Michel extends AppCompatActivity {
             }
         });
 
-
-
     }
     // Botones Rene
     // Image botton

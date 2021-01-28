@@ -41,16 +41,16 @@ public class ProgressBarAnimation extends Animation {
 
         if(valor == to){
 
-            Intent main = new Intent(context, LoginActivityMichel.class);
-            context.startActivity(main);
+                Intent main = new Intent(context, LoginActivityMichel.class);
+                context.startActivity(main);
 
             // Esto es para las sesiones, si un usuario ya está conectado regresa a
             // la pantall de User Activity en vez de Login Activity
            // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
             //GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(context);
-
             //GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(MainActivity.this);
+
             /*if(user != null && account != null){
                 Intent intent = new Intent(context, UserActivity_Michel.class);
                 context.startActivity(intent);
