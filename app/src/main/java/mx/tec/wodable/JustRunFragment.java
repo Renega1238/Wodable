@@ -148,7 +148,7 @@ public class JustRunFragment extends Fragment implements SensorEventListener, St
                     public void onClick(DialogInterface dialog, int which) {
                         timeStarted = true;
                         start.setText("PAUSE");
-                        // seguimo scontadno cuando sael
+                        // seguimos contadno cuando sale
                         sensorManager.registerListener(JustRunFragment.this,accel, SensorManager.SENSOR_DELAY_FASTEST);
                         startTimer();
                         dialog.cancel();
