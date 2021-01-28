@@ -36,7 +36,6 @@ public class RaceActivity extends AppCompatActivity {
         justRunFragment = new JustRunFragment();
         routeMapFragment = new RouteMapFragment();
 
-
     }
 
 

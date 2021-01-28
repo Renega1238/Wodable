@@ -34,7 +34,7 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
     ProgressBar progressBar;
     TextView pasos, meta, question, distancia;
     EditText update;
-    Button newSteps, continueSteps, finishSteps;
+    Button newSteps, continueSteps, finishSteps, endSteps;
 
     // sensores etc step counter
     private SensorManager sensorManager;
@@ -42,12 +42,15 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
     private StepDetector stepDetector;
 
     public int pasosdado = 0;
+    boolean bandera = false;
 
     //Keys
     private static final String PASOS_PREFS = "pasosprefs";
     private static final String PASOSANTERIORES = "pasosanteriores";
     private static final String METAANTERIOR = "metaanterior";
     private static final String DISTANCIAGUARDADA = "distancia";
+    // Guardar los pasos que se dieron cuando el usario termine el día
+    private static final String PASOSALFINAL = "pasosalfinal";
     private SharedPreferences pasosprefs;
 
     // bandera
@@ -68,6 +71,8 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
         continueSteps = findViewById(R.id.DailyStepsContinueButton);
         finishSteps = findViewById(R.id.DailyStepsFinishButton);
         distancia = findViewById(R.id.DailyStepsFinalDistance);
+        //Boton nuevo
+        endSteps  = findViewById(R.id.DailyStepsEndButton);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -136,6 +141,7 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
             //progressBar.setProgress(Integer.parseInt(meta.getText().toString()));
             sensorManager.registerListener(DailyStepsActivity.this,accel, SensorManager.SENSOR_DELAY_FASTEST);
 
+            bandera = false;
         }
     }
 
@@ -163,14 +169,19 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
             builder.show();
 
         }else{
+            if(bandera == true){
+                flag = 2;
+                distancia.setText("Calculando....");
+                //progressBar.setMax(Integer.parseInt(meta.getText().toString()));
+                pasos.setText(String.valueOf(pasosprefs.getInt(PASOSANTERIORES, 0)));
+                meta.setText(String.valueOf(pasosprefs.getInt(METAANTERIOR, 0)));
+                pasosdado = pasosprefs.getInt(PASOSANTERIORES,0);
+                sensorManager.registerListener(DailyStepsActivity.this,accel, SensorManager.SENSOR_DELAY_FASTEST);
+                bandera = false;
+            }else{
 
-            flag = 2;
-            distancia.setText("Calculando....");
-            //progressBar.setMax(Integer.parseInt(meta.getText().toString()));
-            pasos.setText(String.valueOf(pasosprefs.getInt(PASOSANTERIORES, 0)));
-            meta.setText(String.valueOf(pasosprefs.getInt(METAANTERIOR, 0)));
-            pasosdado = pasosprefs.getInt(PASOSANTERIORES,0);
-            sensorManager.registerListener(DailyStepsActivity.this,accel, SensorManager.SENSOR_DELAY_FASTEST);
+            }
+
 
         }
     }
@@ -178,17 +189,48 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
 
         sensorManager.unregisterListener(DailyStepsActivity.this);
 
+        flag = 1;
         // Guardar en sharedprefs
         SharedPreferences.Editor editor = pasosprefs.edit();
         // guardamos los pasos que hayamos dado
         editor.putInt(PASOSANTERIORES, Integer.parseInt(pasos.getText().toString()));
         editor.commit();
 
-        float distanciaFinal = Distance(pasosdado);
+        float distanciaFinal = Distance(Integer.parseInt(pasos.getText().toString()));
 
         distancia.setText("Has recorrido un total de: " + String.valueOf(distanciaFinal) + " Km");
+
+        bandera = true;
     }
 
+    public void endSteps(View v){
+        // Detenemos la cuenta
+        sensorManager.unregisterListener(DailyStepsActivity.this);
+
+        // Obtener los pasos que se dieron cuando el usuario lo finaliza aqui
+        // Conectar a fire base
+
+        // Guardar en sharedprefs
+        SharedPreferences.Editor editor = pasosprefs.edit();
+        // guardamos los pasos que hayamos dado
+
+        flag = 1;
+
+        editor.putInt(PASOSALFINAL, Integer.parseInt(pasos.getText().toString()));
+        editor.putInt(PASOSANTERIORES, 0);
+        editor.putInt(METAANTERIOR, 0);
+        editor.commit();
+
+
+        float distanciaFinal = Distance(Integer.parseInt(pasos.getText().toString()));
+
+        pasos.setText("0");
+        meta.setText("0");
+
+        distancia.setText("Tu último recorrido fue de: " + String.valueOf(distanciaFinal) + " Km");
+
+        bandera = false;
+    }
     // Volver
     public void home(View v){
         Intent retorno = new Intent();
@@ -259,7 +301,7 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
         }
     }
 
-    public float Distance(int pasosdados){
+    public float Distance(int pasos){
 
         // Guardar en sharedprefs
         SharedPreferences.Editor editor = pasosprefs.edit();
@@ -268,7 +310,7 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
 
         if(flag == 1){
             // Buscamos las siguientes aproximaciones en Google
-            distancia = (float) (pasosdados*78) / (float) 100000; // es 100000 porque esta en cm y pasamos a km
+            distancia = (float) (pasos*78) / (float) 100000; // es 100000 porque esta en cm y pasamos a km
 
             // guardamos los pasos que hayamos dado
             editor.putFloat(DISTANCIAGUARDADA, distancia);
@@ -276,7 +318,7 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
             editor.commit();
 
         }else if (flag == 2){
-            float x = (float) (pasosdados*78) / (float) 100000;
+            float x = (float) (pasos*78) / (float) 100000;
             distancia = (float) pasosprefs.getFloat(DISTANCIAGUARDADA, 0) + x;
 
             editor.putFloat(DISTANCIAGUARDADA, distancia);
