@@ -78,7 +78,5 @@ public class UserActivity_Michel extends AppCompatActivity {
             }
         });
 
-
-
     }
 }

@@ -9,7 +9,7 @@
     tools:context=".RecentActivity">
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/bienvenidlblTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
