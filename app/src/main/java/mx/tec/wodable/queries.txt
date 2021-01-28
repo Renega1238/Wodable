@@ -1,0 +1,52 @@
+/** Insert into usuarios **/
+
+INSERT INTO usuarios (id_usuario, username, password, correo, nombre, apellido)
+VALUES (null, "lvm3632", "hola123", "a01636172@itesm.mx", "Michel", "Lujano");
+
+
+/** Insert Into recorridos **/
+
+/** Default timestamp**/
+INSERT INTO recorridos(id_carrera, timestamp_inicio, timestamp_final, distancia, pasos, id_usuario)
+VALUES (null, null, null,  2000, 10000, 1);
+
+
+/** Con valor timestamp**/
+INSERT INTO recorridos(id_carrera, timestamp_inicio, timestamp_final, distancia, pasos, id_usuario)
+VALUES (null, "2021-01-14 12:41:59", "2021-01-14 12:55:59",  20000, 5000, 1);
+
+
+/** Insert Into atributos_fisicos **/
+INSERT INTO atributos_fisicos(id_atributos, fecha_nacimiento, peso, altura, genero, id_usuario)
+VALUES (null, "1994-11-24", 89.500,  1.70, "HOMBRE", 1);
+
+
+/** Queries **/ 
+
+
+// De usuarios a recorridos
+
+SELECT usuarios.id_usuario, usuarios.apellido, recorridos.pasos, recorridos.timestamp_inicio, recorridos.timestamp_final
+from usuarios inner join recorridos on usuarios.id_usuario = recorridos.id_usuario
+order by 1;
+
+// De usuarios a atributos físicos
+
+SELECT usuarios.id_usuario, usuarios.apellido, atributos_fisicos.altura, atributos_fisicos.genero, atributos_fisicos.id_atributos
+from usuarios inner join atributos_fisicos on usuarios.id_usuario = atributos_fisicos.id_usuario
+order by 1;
+
+// usuarios, recorridos y atributos físicos
+
+SELECT usuarios.id_usuario, usuarios.apellido, recorridos.pasos, recorridos.timestamp_inicio, recorridos.timestamp_final, atributos_fisicos.fecha_nacimiento
+from usuarios inner join recorridos on usuarios.id_usuario = recorridos.id_usuario inner join atributos_fisicos on 
+usuarios.id_usuario = atributos_fisicos.id_usuario
+order by 1;
+
+
+
+/** Notes **/
+The TIMESTAMP data type is used for values that contain both date and time parts. TIMESTAMP has a range of '1970-01-01 00:00:01' UTC to '2038-01-19 03:14:07' UTC.
+
+The DATE type is used for values with a date part but no time part. MySQL retrieves and displays DATE values 
+in 'YYYY-MM-DD' format. The supported range is '1000-01-01' to '9999-12-31
