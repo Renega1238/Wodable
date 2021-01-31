@@ -1,5 +1,6 @@
 package mx.tec.wodable;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -15,12 +16,22 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 // Thanks to Ansu Pilar for helping us with the podemter
 
@@ -56,6 +67,11 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
     // bandera
     int flag = 0;
 
+    // Bases de datos
+    private String userId;
+    private FirebaseFirestore fStore;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +102,10 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
         meta.setText(String.valueOf(pasosprefs.getInt(METAANTERIOR, 0)));
         distancia.setText("Tu último recorrido fue de: " + String.valueOf(pasosprefs.getFloat(DISTANCIAGUARDADA, 0 )) + " Km");
 
+        // Para base de datos
+        // Referencia a la DB de usuarios autenticados
+        mAuth = FirebaseAuth.getInstance();
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -106,6 +126,50 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
             }
         }).start();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        fStore = FirebaseFirestore.getInstance();
+        if(mAuth.getCurrentUser() == null){
+            FirebaseAuth.getInstance().signOut();
+            FirebaseFirestore.getInstance().terminate();
+            Intent i = new Intent(DailyStepsActivity.this, LoginActivityMichel.class);
+            startActivity(i);
+            finish();
+            return;
+        }
+        userId = mAuth.getCurrentUser().getUid();
+        bandera = true;
+    }
+
+    private static boolean success = false;
+    public void actualizarDatos(String pasos, String distancia){
+        DocumentReference documentReference = fStore.collection("dailySteps").document(userId);
+        Map<String, Object> dailySteps = new HashMap<>();
+        dailySteps.put("pasos", pasos);
+        dailySteps.put("distancia", distancia);
+        documentReference.set(dailySteps).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(DailyStepsActivity.this,"Datos actualizados",Toast.LENGTH_SHORT).show();
+                Log.wtf("Atributos creados (Atributos): ", "Datos actualizados");
+                success = true;
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(DailyStepsActivity.this,"¡Algo pasó!",Toast.LENGTH_SHORT).show();
+                Log.d("Algo pasó (Atributos): ", "onFailure: " + e.toString());
+                success = false;
+            }
+        });
+
+        // Cuando se actualicen los datos llevar a otra pantalla
+        Intent i = new Intent(DailyStepsActivity.this, EjerciciosActivity.class);
+        startActivity(i);
+        finish();
     }
 
     public boolean isDigit(String number){
@@ -209,7 +273,11 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
 
         // Obtener los pasos que se dieron cuando el usuario lo finaliza aqui
         // Conectar a fire base
+        float distanciaFinal = Distance(Integer.parseInt(pasos.getText().toString()));
 
+        String r = String.valueOf(pasosdado);
+        String p = String.valueOf(distanciaFinal);
+        actualizarDatos(r,p);
         // Guardar en sharedprefs
         SharedPreferences.Editor editor = pasosprefs.edit();
         // guardamos los pasos que hayamos dado
@@ -221,8 +289,6 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
         editor.putInt(METAANTERIOR, 0);
         editor.commit();
 
-
-        float distanciaFinal = Distance(Integer.parseInt(pasos.getText().toString()));
 
         pasos.setText("0");
         meta.setText("0");

@@ -204,35 +204,36 @@ public class edit_info_personal extends AppCompatActivity implements NumberPicke
         Log.wtf("Gender", res +"" );
         gender=res;
     }
+
     public void pickDate(View v){
-            // La fecha inicial
-            final Calendar date = Calendar.getInstance();
-            // Aqui inicia visualmente en el año 1994 para crear la fecha de nacimiento
-            date.set(Calendar.YEAR, 1994);
-            date.set(Calendar.DAY_OF_MONTH, 1);
-            date.set(Calendar.MONTH, 0);
-            mYear = date.get(Calendar.YEAR);
-            mMonth = date.get(Calendar.MONTH);
-            mDay = date.get(Calendar.DAY_OF_MONTH);
+        // La fecha inicial
+        final Calendar date = Calendar.getInstance();
+        // Aqui inicia visualmente en el año 1994 para crear la fecha de nacimiento
+        date.set(Calendar.YEAR, 1994);
+        date.set(Calendar.DAY_OF_MONTH, 1);
+        date.set(Calendar.MONTH, 0);
+        mYear = date.get(Calendar.YEAR);
+        mMonth = date.get(Calendar.MONTH);
+        mDay = date.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year,
-                                              int monthOfYear, int dayOfMonth) {
-                            if(year <= 2003){
-                                txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                            }else{
-                                Toast.makeText(edit_info_personal.this, "¡Tienes que tener más de 18 años!", Toast.LENGTH_LONG).show();
-                            }
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        if(year <= 2003){
+                            txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        }else{
+                            Toast.makeText(edit_info_personal.this, "¡Tienes que tener más de 18 años!", Toast.LENGTH_LONG).show();
                         }
-                    }, mYear, mMonth, mDay);
+                    }
+                }, mYear, mMonth, mDay);
 
-            // El número 19 es a partir de 1994 declarado arriba + 19 = 2013
-            // para validar mayores a 18
-            date.set(Calendar.YEAR, date.get(Calendar.YEAR)+19);
-            datePickerDialog.getDatePicker().setMaxDate(date.getTimeInMillis());
-            datePickerDialog.show();
+        // El número 19 es a partir de 1994 declarado arriba + 19 = 2013
+        // para validar mayores a 18
+        date.set(Calendar.YEAR, date.get(Calendar.YEAR)+19);
+        datePickerDialog.getDatePicker().setMaxDate(date.getTimeInMillis());
+        datePickerDialog.show();
     }
     // Función que detecta cuando hay un cambio en el scroll del numberPicker
     @Override

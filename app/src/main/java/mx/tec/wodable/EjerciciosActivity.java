@@ -58,7 +58,7 @@ public class EjerciciosActivity extends AppCompatActivity {
     }
 
     private void cambiarAMiCronometro(View v) {
-        Intent newRace = new Intent(this, RaceActivity.class);
+        Intent newRace = new Intent(this, Rene_MapsActivity.class);
 
         startActivityForResult(newRace, NEWRACE_CODE);
     }

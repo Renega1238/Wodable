@@ -61,9 +61,5 @@ public class ProgressBarAnimation extends Animation {
 
         }
 
-
-
-
-
     }
 }

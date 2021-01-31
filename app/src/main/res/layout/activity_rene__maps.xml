@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Rene_MapsActivity">
+    <!--
+    <EditText
+        android:id="@+id/renemapsdestino"
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:hint="Destino"
+        android:gravity="center_vertical"
+        />
+    <Button
+        android:id="@+id/renemapsbuscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/texto_botones"
+        android:background="@drawable/diseno_botones"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="5dp"
+        android:text="Buscar"
+        />
+    <Button
+        android:id="@+id/renemapsborrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/texto_botones"
+        android:background="@drawable/diseno_botones"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="5dp"
+        android:text="Borrar"
+        />
+        -->
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:id="@+id/google_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ReneTiempo"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="00:00:00"
+        android:layout_marginBottom="210dp"
+        />
+
+    <TextView
+        android:id="@+id/RenePasos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="170dp"
+        android:textColor="#000000"
+        android:textSize="35dp"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/ReneDistancia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="130dp"
+        android:textColor="#000000"
+        android:textSize="35dp"
+        android:text="0.0 Km" />
+
+    <Button
+        android:id="@+id/ReneStartBttn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="30dp"
+        android:text="START" />
+
+    <Button
+        android:id="@+id/ReneStopBttn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="30dp"
+        android:text="STOP" />
+    <Button
+        android:id="@+id/ReneResetBttn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="100dp"
+        android:text="RESET" />
+
+    <Button
+        android:id="@+id/ReneExitBttn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/diseno_botones"
+        android:textColor="@drawable/texto_botones"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:text="EXIT" />
+</RelativeLayout>
