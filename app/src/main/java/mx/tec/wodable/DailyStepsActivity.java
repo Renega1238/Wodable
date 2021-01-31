@@ -28,7 +28,6 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
     //para progress bar
     private Handler handler = new Handler();
 
-
     //Elementos
     ProgressBar progressBar;
     TextView pasos, meta, question, distancia;

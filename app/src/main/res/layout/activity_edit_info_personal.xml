@@ -77,6 +77,8 @@
                 android:layout_weight="1"
                 android:textSize="14dp"
                 android:text="Hombre"
+                android:theme="@style/RadioButtonStyle" />
+
 
                 />
             <RadioButton
@@ -89,6 +91,7 @@
                 android:layout_weight="1"
                 android:textSize="14dp"
                 android:text="Mujer"
+                android:theme="@style/RadioButtonStyle" />
                 />
         </RadioGroup>
     </RelativeLayout>

@@ -215,7 +215,7 @@ public class edit_info_personal extends AppCompatActivity implements NumberPicke
             mMonth = date.get(Calendar.MONTH);
             mDay = date.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.fecha_picker,
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year,
