@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="105dp">
 
-        >
+
         <RadioGroup
             android:id="@+id/radioGenderGroup"
             android:layout_width="match_parent"
@@ -78,8 +78,10 @@
                 android:textSize="14dp"
                 android:text="Hombre"
                 android:theme="@style/RadioButtonStyle"
-
                 />
+
+
+
             <RadioButton
                 android:id="@+id/radioF"
 
@@ -91,7 +93,7 @@
                 android:textSize="14dp"
                 android:text="Mujer"
                 android:theme="@style/RadioButtonStyle"
-                />
+                 />
         </RadioGroup>
     </RelativeLayout>
 

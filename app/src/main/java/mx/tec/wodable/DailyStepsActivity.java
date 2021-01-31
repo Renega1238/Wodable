@@ -36,10 +36,8 @@ import java.util.Map;
 // Thanks to Ansu Pilar for helping us with the podemter
 
 public class DailyStepsActivity extends AppCompatActivity implements SensorEventListener, StepListener {
-
     //para progress bar
     private Handler handler = new Handler();
-
 
     //Elementos
     ProgressBar progressBar;

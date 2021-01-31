@@ -38,7 +38,7 @@ public class edit_info_personal extends AppCompatActivity implements NumberPicke
     private EditText peso,altura,txtDate;
     private Button actualizar, btnDatePicker;
     private static boolean clickedPeso=false,
-                           clickedAltura=false;
+            clickedAltura=false;
     private static String gender="";
     private RadioGroup radioGenderGroup;
     private RadioButton radioGenderButton;
@@ -216,7 +216,7 @@ public class edit_info_personal extends AppCompatActivity implements NumberPicke
         mMonth = date.get(Calendar.MONTH);
         mDay = date.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.fecha_picker,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year,
@@ -241,13 +241,13 @@ public class edit_info_personal extends AppCompatActivity implements NumberPicke
 
         if(edit_info_personal.clickedPeso){
             if(WeightPickerDialogFragment.CANCELAR == false)
-            peso.setText(WeightPickerDialogFragment.arr[newVal] + " kg.");
+                peso.setText(WeightPickerDialogFragment.arr[newVal] + " kg.");
             clickedPeso=false;
         }
         if(edit_info_personal.clickedAltura){
             // Es una bandera para decir si cancelo en showDialog no me sobreescriba datos
             if(HeightPickerDialogFragment.CANCELAR == false)
-            altura.setText(HeightPickerDialogFragment.arr[newVal] + " m.");
+                altura.setText(HeightPickerDialogFragment.arr[newVal] + " m.");
             clickedAltura=false;
         }
     }

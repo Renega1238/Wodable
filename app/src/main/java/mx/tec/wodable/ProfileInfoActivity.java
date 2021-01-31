@@ -97,6 +97,7 @@ public class ProfileInfoActivity extends AppCompatActivity {
                 String fNacimiento1 = documentSnapshot.getString("fecha_de_nacimiento");
                 String genero1 = documentSnapshot.getString("genero");
 
+
                 altura.setText(altura1);
                 Fnacimiento.setText(fNacimiento1);
                 peso.setText(peso1);
