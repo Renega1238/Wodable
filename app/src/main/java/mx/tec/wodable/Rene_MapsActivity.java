@@ -198,7 +198,7 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 									 horaFinalD, String.valueOf(f), pasos.getText().toString(), tiempo.getText().toString());
 
 							  pasos.setText("0");
-							  distancia.setText("0 Km");
+							  distancia.setText("0 m");
 							  time = 0.0;
 							  horafinal = 0;
 							  horainicio = 0;
@@ -247,7 +247,8 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 						 sensorManager.unregisterListener(Rene_MapsActivity.this);
 
 						 float f = Distance(pasosdado);
-						 distancia.setText(String.valueOf(f) + "Km");
+						 String r = String.format("%.2f",f);
+						 distancia.setText(r + " m." );
 
 					}
 			   }
@@ -274,7 +275,7 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 										timeStarted = true;
 										pasosdado = 0;
 										pasos.setText("0");
-										distancia.setText("0 Km");
+										distancia.setText("0 m");
 										// Llamamos a poner el tiempo
 										start.setText("PAUSE");
 										tiempo.setText("00:00:00");
@@ -498,7 +499,7 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 		  float distancia = 0;
 
 		  // Buscamos las siguientes aproximaciones en Google
-		  distancia = (float) (pasosdados*78) / (float) 100000; // es 100000 porque esta en cm y pasamos a km
+		  distancia = ((float) (pasosdados*78) / (float) 100000)*1000; // es 100000 porque esta en cm y pasamos a km
 
 		  return distancia;
 	 }

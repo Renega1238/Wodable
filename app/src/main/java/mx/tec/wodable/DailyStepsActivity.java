@@ -267,15 +267,15 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
         String p = String.valueOf(distanciaFinal);
         actualizarDatos(r,p);
         // Guardar en sharedprefs
-        //SharedPreferences.Editor editor = pasosprefs.edit();
+        SharedPreferences.Editor editor = pasosprefs.edit();
         // guardamos los pasos que hayamos dado
         flag = 1;
-        /*
+
         editor.putInt(PASOSALFINAL, Integer.parseInt(pasos.getText().toString()));
         editor.putInt(PASOSANTERIORES, 0);
         editor.putInt(METAANTERIOR, 0);
         editor.commit();
-         */
+
         pasos.setText("0");
         meta.setText("0");
         //distancia.setText("Tu último recorrido fue de: " + String.valueOf(distanciaFinal) + " m");

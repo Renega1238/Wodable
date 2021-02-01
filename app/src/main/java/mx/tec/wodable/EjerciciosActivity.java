@@ -89,7 +89,7 @@ public class EjerciciosActivity extends AppCompatActivity {
                 Toast.makeText(this,"No has llegado a la mitad", Toast.LENGTH_SHORT).show();
             }else if(Integer.parseInt(data.getStringExtra("pasos")) < Integer.parseInt(data.getStringExtra("meta"))){
                 int p = Integer.parseInt(data.getStringExtra("meta")) - Integer.parseInt(data.getStringExtra("pasos"));
-                Toast.makeText(this, "Felicidades ya solo te faltan " + String.valueOf(p) + " pasos para tu meta de hoy", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ya solo te faltan " + String.valueOf(p) + " pasos para tu meta de hoy", Toast.LENGTH_SHORT).show();
             }else if(Integer.parseInt(data.getStringExtra("pasos")) == Integer.parseInt(data.getStringExtra("meta"))){
                 Toast.makeText(this, "FELICIDADES, LO HAS LOGRADO", Toast.LENGTH_SHORT).show();
             }else{

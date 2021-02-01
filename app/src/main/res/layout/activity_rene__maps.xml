@@ -72,7 +72,7 @@
         android:layout_marginBottom="130dp"
         android:textColor="#000000"
         android:textSize="35dp"
-        android:text="0.0 Km" />
+        android:text="0.0 m." />
 
     <Button
         android:id="@+id/ReneStartBttn"
