@@ -40,7 +40,7 @@
         android:layout_marginTop="100dp"
         android:background="#ADB1B1"
         android:textAlignment="center"
-        android:inputType="number"
+        android:inputType="textPersonName"
         android:hint="Goal"
         android:text="" />
 

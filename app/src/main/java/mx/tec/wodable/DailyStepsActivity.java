@@ -53,10 +53,8 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
     private SensorManager sensorManager;
     private Sensor accel;
     private StepDetector stepDetector;
-
     public int pasosdado = 0;
     boolean bandera = false;
-
     //Keys
     private static final String PASOS_PREFS = "pasosprefs";
     private static final String PASOSANTERIORES = "pasosanteriores";
@@ -65,10 +63,8 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
     // Guardar los pasos que se dieron cuando el usario termine el día
     private static final String PASOSALFINAL = "pasosalfinal";
     private SharedPreferences pasosprefs;
-
     // bandera
     int flag = 0;
-
     // Bases de datos
     private String userId;
     private FirebaseFirestore fStore;
@@ -185,14 +181,12 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
         }catch (Exception e){
             return false;
         }
-
     }
-    public void newStep(View v){
 
+    public void newStep(View v){
         if(!isDigit(update.getText().toString())){
             Toast.makeText(this, "Porfavor ingresa un numero entero mayor a 0", Toast.LENGTH_SHORT).show();
         }else{
-
             // Flag para saber si sumar o reemplazar
             distancia.setText("Calculando....");
             flag = 1;
@@ -207,7 +201,6 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
             pasosdado = 0;
             //progressBar.setProgress(Integer.parseInt(meta.getText().toString()));
             sensorManager.registerListener(DailyStepsActivity.this,accel, SensorManager.SENSOR_DELAY_FASTEST);
-
             bandera = false;
         }
     }
@@ -220,7 +213,6 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
             builder.setCancelable(true);
             builder.setTitle("Espera!");
             builder.setMessage("Ya has completado tu meta: " + meta.getText().toString() + " pasos, porfavor define una nueva");
-
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -234,7 +226,6 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
                 }
             });
             builder.show();
-
         }else{
             if(bandera == true){
                 flag = 2;
@@ -245,62 +236,48 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
                 pasosdado = pasosprefs.getInt(PASOSANTERIORES,0);
                 sensorManager.registerListener(DailyStepsActivity.this,accel, SensorManager.SENSOR_DELAY_FASTEST);
                 bandera = false;
-            }else{
-
             }
-
-
         }
     }
     public void stop(View v){
 
         if(update.getText().toString().isEmpty() && pasos.getText().toString().equals("0")){
+            bandera = false;
             return;
         }
         sensorManager.unregisterListener(DailyStepsActivity.this);
-
         flag = 1;
         // Guardar en sharedprefs
         SharedPreferences.Editor editor = pasosprefs.edit();
         // guardamos los pasos que hayamos dado
         editor.putInt(PASOSANTERIORES, Integer.parseInt(pasos.getText().toString()));
         editor.commit();
-
         float distanciaFinal = Distance(Integer.parseInt(pasos.getText().toString()));
-
         distancia.setText("Has recorrido un total de: " + String.valueOf(distanciaFinal) + " m");
-
         bandera = true;
     }
 
     public void endSteps(View v){
         // Detenemos la cuenta
         sensorManager.unregisterListener(DailyStepsActivity.this);
-
         // Obtener los pasos que se dieron cuando el usuario lo finaliza aqui
         // Conectar a fire base
         float distanciaFinal = Distance(Integer.parseInt(pasos.getText().toString()));
-
         String r = String.valueOf(pasosdado);
         String p = String.valueOf(distanciaFinal);
         actualizarDatos(r,p);
         // Guardar en sharedprefs
         //SharedPreferences.Editor editor = pasosprefs.edit();
         // guardamos los pasos que hayamos dado
-
         flag = 1;
         /*
         editor.putInt(PASOSALFINAL, Integer.parseInt(pasos.getText().toString()));
         editor.putInt(PASOSANTERIORES, 0);
         editor.putInt(METAANTERIOR, 0);
         editor.commit();
-
          */
-
-
         pasos.setText("0");
         meta.setText("0");
-
         //distancia.setText("Tu último recorrido fue de: " + String.valueOf(distanciaFinal) + " m");
         ultimosPasos();
         bandera = false;
@@ -308,25 +285,20 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
     // Volver
     public void home(View v){
         Intent retorno = new Intent();
-
         //Intent info
         retorno.putExtra("pasos", pasos.getText().toString());
         retorno.putExtra("meta", meta.getText().toString());
-
         setResult(Activity.RESULT_OK, retorno);
-
         finish();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
         if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
             stepDetector.updateAccel(event.timestamp, event.values[0], event.values[1], event.values[2]);
         }
@@ -342,35 +314,27 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
 
     // Pop alert when reached the goal
     public void compare(int pasosdados){
-
         if(pasosdados == Integer.parseInt(meta.getText().toString())){
-
             // primero paramos la cuetna
             stop(finishSteps);
-
             AlertDialog.Builder builder = new AlertDialog.Builder(DailyStepsActivity.this);
             builder.setCancelable(true);
             builder.setTitle("FELICIDADES");
             builder.setMessage("Has logrado tu meta de hoy: " + meta.getText().toString() + " pasos!");
-
             float distanciaFinal = Distance(Integer.parseInt(pasos.getText().toString()));
-
             String r = String.valueOf(pasosdado);
             String p = String.valueOf(distanciaFinal);
             actualizarDatos(r,p);
-
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();
                 }
             });
-
             builder.setPositiveButton("Again", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -382,30 +346,21 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
     }
 
     public float Distance(int pasos){
-
         // Guardar en sharedprefs
         SharedPreferences.Editor editor = pasosprefs.edit();
-
         float distancia = 0;
-
         if(flag == 1){
             // Buscamos las siguientes aproximaciones en Google
             distancia = ((float) (pasos*78) / (float) 100000)*1000; // es 100000 porque esta en cm y pasamos a km
-
             // guardamos los pasos que hayamos dado
             editor.putFloat(DISTANCIAGUARDADA, distancia);
-
             editor.commit();
-
         }else if (flag == 2){
             float x = ((float) (pasos*78) / (float) 100000)*1000;
             distancia = (float) pasosprefs.getFloat(DISTANCIAGUARDADA, 0) + x;
-
             editor.putFloat(DISTANCIAGUARDADA, distancia);
-
             editor.commit();
         }
-
         return distancia;
     }
 
@@ -416,9 +371,16 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 String distanciaFB = documentSnapshot.getString("distancia");
                 String pasosFB = documentSnapshot.getString("pasos");
-                String r = String.format("Con %d pasos, recorriste un total de %.2f m", Integer.parseInt(pasosFB)
-                        ,Float.parseFloat(distanciaFB));
-                distancia.setText(r);
+                if(distanciaFB == null || pasosFB == null){
+                        String r = "Inicia tu primer recorrido ¡Empieza ahora!";
+                        distancia.setText(r);
+                }else{
+                    String r = String.format("Con %d pasos, recorriste un total de %.2f m", Integer.parseInt(pasosFB)
+                            ,Float.parseFloat(distanciaFB));
+                    distancia.setText(r);
+                }
+
+                Log.wtf("ultimosPasos", "entro a onEvent");
             }
         });
     }
