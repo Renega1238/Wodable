@@ -34,22 +34,22 @@ import java.util.regex.Pattern;
 public class SignUpActivity_Michel extends AppCompatActivity{
 
     private TextView nuevoUsuario,
-                     bienvenidoLabel,
-                     continuarLabel;
+            bienvenidoLabel,
+            continuarLabel;
 
     private TextInputEditText emailEditText,
-                              passwordEditText,
-                              confirmPasswordEditText;
+            passwordEditText,
+            confirmPasswordEditText;
 
     private TextInputLayout usuarioSignUpTextField,
-                            contrasenaTextField,
-                            nameTextField;
+            contrasenaTextField,
+            nameTextField;
 
     private ImageView signUpImageView;
     private MaterialButton inicioSesion;
     /*
-    *  Variables bases de datos
-    */
+     *  Variables bases de datos
+     */
     private String userId;
     private FirebaseFirestore fStore;
     private FirebaseAuth mAuth;
@@ -92,8 +92,8 @@ public class SignUpActivity_Michel extends AppCompatActivity{
             }
         });
     }
-     /** Creamos onStart una sesion a la DBFirestore **/
-   // @Override
+    /** Creamos onStart una sesion a la DBFirestore **/
+    // @Override
     protected void onStart() {
         super.onStart();
         fStore = FirebaseFirestore.getInstance();
@@ -142,51 +142,53 @@ public class SignUpActivity_Michel extends AppCompatActivity{
         }
     }
     public void registrar(String email, String password, String nombre){
-            mAuth.createUserWithEmailAndPassword(email,password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                userId = mAuth.getCurrentUser().getUid();
-                                DocumentReference documentReference = fStore
-                                        .collection("usuarios").document(userId);
+        mAuth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            userId = mAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = fStore
+                                    .collection("usuarios").document(userId);
 
-                                Map<String, Object> user = new HashMap<>();
-                                user.put("nombre_completo", nombre);
-                                user.put("correo", email);
-                                user.put("password", password);
-                                user.put("id_usuario", password);
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("nombre_completo", nombre);
+                            user.put("correo", email);
+                            user.put("password", password);
+                            user.put("id_usuario", password);
 
 
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                                    Log.wtf("Usuario creado - ", "onSuccess: user Profile is created for " + user);
-                                        Toast.makeText(SignUpActivity_Michel.this, "Registro completo", Toast.LENGTH_LONG).show();
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.wtf("Usuario creado - ", "onSuccess: user Profile is created for " + user);
+                                    Toast.makeText(SignUpActivity_Michel.this, "Registro completo", Toast.LENGTH_LONG).show();
 
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.d("Error usuario:", "onFailure: " + e.toString());
-                                        Toast.makeText(SignUpActivity_Michel.this, e.toString(), Toast.LENGTH_LONG).show();
-
-                                    }
-                                });
-
-                                isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
-                                SignUpActivity_Michel.setIsNewUser(isNewUser);
-                                if(isNewUser){
-                                    Intent intent = new Intent(SignUpActivity_Michel.this, edit_info_personal.class);
-                                    startActivity(intent);
-                                    Toast.makeText(SignUpActivity_Michel.this, "Nuevo usuario", Toast.LENGTH_LONG).show();
-                                    finish();
                                 }
-                            }else{
-                                Toast.makeText(SignUpActivity_Michel.this, "Fallo en registrarse", Toast.LENGTH_LONG).show();
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d("Error usuario:", "onFailure: " + e.toString());
+                                    Toast.makeText(SignUpActivity_Michel.this, e.toString(), Toast.LENGTH_LONG).show();
+
+                                }
+                            });
+
+                            isNewUser = task.getResult().getAdditionalUserInfo().isNewUser();
+                            SignUpActivity_Michel.setIsNewUser(isNewUser);
+                            if(isNewUser){
+                                Intent intent = new Intent(SignUpActivity_Michel.this, edit_info_personal.class);
+                                startActivity(intent);
+                                Toast.makeText(SignUpActivity_Michel.this, "Nuevo usuario", Toast.LENGTH_LONG).show();
+                                finish();
                             }
+                        }else{
+
+
+                            Toast.makeText(SignUpActivity_Michel.this, "Fallo en registrarse"  + task.getException(), Toast.LENGTH_LONG).show();
                         }
-                    });
+                    }
+                });
     }
     public void transitionBack(){
         // La clase en la que estamos, y la clase a la que queremos ir

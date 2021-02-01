@@ -42,6 +42,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -65,12 +66,9 @@ import java.util.TimerTask;
 import com.google.firebase.firestore.FieldValue;
 
 public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.OnMapClickListener, SensorEventListener, StepListener {
-
 	 private static final long UPDATE = 10 *1000;
 	 private static final long FASTEST = 2 * 1000;
-
 	 private static int tamanio = 0;
-
 	 // Variables
 	 SupportMapFragment supportMapFragment;
 	 FusedLocationProviderClient client;
@@ -79,34 +77,27 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 	 LatLng userlocation;
 	 long horainicio, horafinal;
 	 Date horaInicioD, horaFinalD;
-
 	 public GoogleMap mMap;
-
 	 // To do lo del cronometro
 	 // Elementos
 	 TextView tiempo, pasos, distancia;
 	 Button reset, stop, start, exit;
-
 	 Timer timer;
 	 TimerTask timerTask;
 	 Double time = 0.0;
-
 	 boolean timeStarted = false;
-
 	 // sensores etc step counter
 	 private SensorManager sensorManager;
 	 private Sensor accel;
 	 private StepDetector stepDetector;
-
 	 public int pasosdado = 0;
-
 	 /*
 	  *  Variables bases de datos
 	  */
 	 private String userId;
 	 private FirebaseFirestore fStore;
 	 private FirebaseAuth mAuth;
-
+	 private boolean timeUnaVez = false;
 	 @Override
 	 protected void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
@@ -114,36 +105,15 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 		  // Encontramos el fragment
 		  supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
 				  .findFragmentById(R.id.google_map);
-
-		  /*
-		  // Hacemos el mapita
-		  supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-			   @Override
-			   public void onMapReady(GoogleMap googleMap) {
-
-			   }
-		  });
-
-		   */
-
-		  // Para base de datos
-		  // Referencia a la DB de usuarios autenticados
 		  mAuth = FirebaseAuth.getInstance();
-
-		  // horas
-		  horaInicioD = new Date();
-		  horaFinalD = new Date();
-
 		  // Fuses loction
 		  client = LocationServices.getFusedLocationProviderClient(this);
 
 		  // Para tener el puntito azul
 		  LocationRequest request = new LocationRequest();
-
 		  request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 		  request.setInterval(UPDATE);
 		  request.setFastestInterval(FASTEST);
-
 		  // Check permission
 		  if (ActivityCompat.checkSelfPermission(Rene_MapsActivity.this,
 				  Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
@@ -162,7 +132,6 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 			   ActivityCompat.requestPermissions(Rene_MapsActivity.this,
 					   new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
 		  }
-
 		  // Cronometro
 		  timer = new Timer();
 
@@ -185,9 +154,10 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 		  stop.setOnClickListener(new View.OnClickListener() {
 			   @Override
 			   public void onClick(View v) {
-
 					// dejar de contar cuando sale el pop
 					sensorManager.unregisterListener(Rene_MapsActivity.this);
+
+					if(timerTask == null)return;
 
 					timerTask.cancel();
 
@@ -199,7 +169,6 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 					builder.setMessage("Estas seguro que deseas parar? Has corrido:  " + String.valueOf(distanciaFinal) + " Km");
 
 					// Dialog alert
-
 					builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 						 @Override
 						 public void onClick(DialogInterface dialog, int which) {
@@ -214,22 +183,25 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 					builder.setPositiveButton("Seguro!", new DialogInterface.OnClickListener() {
 						 @Override
 						 public void onClick(DialogInterface dialog, int which) {
-
+							 if(tiempo.getText().toString().equals("00:00:00"))return;
+							 horaFinalD = new Date();
 						 	 horafinal = horaFinalD.getTime();
+
 							  Log.wtf("HoraFinal", String.valueOf(horafinal));
 							  Timestamp horai = new Timestamp(horaFinalD);
 							  Log.wtf("HoraFinal", horai.toString());
 							  // se detiene
 							  sensorManager.unregisterListener(Rene_MapsActivity.this);
-
 							  float f = Distance(pasosdado);
 
-							  actualizarDatos(String.valueOf(horainicio),
-									  String.valueOf(horafinal), String.valueOf(f), pasos.getText().toString());
+							 actualizarDatos(horaInicioD,
+									 horaFinalD, String.valueOf(f), pasos.getText().toString(), tiempo.getText().toString());
 
 							  pasos.setText("0");
 							  distancia.setText("0 Km");
 							  time = 0.0;
+							  horafinal = 0;
+							  horainicio = 0;
 							  pasosdado = 0;
 							  timeStarted = false;
 							  // Llamamos a poner el tiempo
@@ -255,19 +227,18 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 					if(timeStarted == false){
 						 timeStarted = true;
 						 start.setText("PAUSE");
-
 						 distancia.setText("Calculando....");
 						 // Step counter
 						 sensorManager.registerListener(Rene_MapsActivity.this,accel, SensorManager.SENSOR_DELAY_FASTEST);
 
-						 horainicio = horaInicioD.getTime();
-						 Log.wtf("HoraInicio", String.valueOf(horainicio));
-						 Timestamp horai = new Timestamp(horaInicioD);
-						 Log.wtf("HoraInicio", horai.toString());
-
-
+						 if(tiempo.getText().toString().equals("00:00:00")){
+							 horaInicioD = new Date();
+							 horainicio = horaInicioD.getTime();
+							 Log.wtf("HoraInicio", String.valueOf(horainicio));
+							 Timestamp horai = new Timestamp(horaInicioD);
+							 Log.wtf("HoraInicio", horai.toString());
+						 }
 						 startTimer();
-
 					}else{
 
 						 timeStarted = false;
@@ -351,62 +322,64 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 		  userId = mAuth.getCurrentUser().getUid();
 	 }
 
-	 private static boolean success = false;
-	 public void actualizarDatos(String horainicio, String horafinal, String distancia, String pasos){
-		  actualizarDatosPersonales();
-		  //DocumentReference documentReference = fStore.collection("recorridos").document(userId+"/"+tamanio++);
-		  DocumentReference documentReference = fStore.collection("recorridos").document(userId)
-				  .collection("carrera").document(String.valueOf(tamanio));
-		  Map<String, Object> recorridos = new HashMap<>();
+	 public void actualizarDatos(Date horainicio, Date horafinal, String distancia, String pasos, String tiempo) {
+	 	DocumentReference docRef = fStore.collection("recorridos").document(userId);
+	 	Log.wtf("UserID: ", userId+ "");
 
-		  Log.wtf("Tamanio", String.valueOf(tamanio));
+	 	docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+			@Override
+			public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+				if(task.isSuccessful()){
+					DocumentSnapshot document = task.getResult();
 
+					if(document.getData() == null){
+						Map<String,Object> recorridos = new HashMap<>();
+						recorridos.put("0", Arrays.asList(horainicio,horafinal,distancia,pasos, tiempo));
+						fStore.collection("recorridos").document(userId)
+								.set(recorridos)
+								.addOnSuccessListener(new OnSuccessListener<Void>() {
+									@Override
+									public void onSuccess(Void aVoid) {
+										Log.d("Nuevo documento", "DocumentSnapshot successfully written!");
+									}
+								})
+								.addOnFailureListener(new OnFailureListener() {
+									@Override
+									public void onFailure(@NonNull Exception e) {
+										Log.w("No se pudo crear el documento", "Error writing document", e);
+									}
+								});
+					}else{
+						Map<String,Object> lista_recorridos = document.getData();
 
-		  recorridos.put(String.valueOf(tamanio), Arrays.asList(horainicio,horafinal,distancia,pasos));
+						Log.wtf("Tamaño de los datos ", lista_recorridos.size() + "");
 
-		  //recorridos.put("dos", Arrays.asList(horainicio,horafinal,distancia,pasos));
+						for (Map.Entry<String,Object> entry : lista_recorridos.entrySet()){
+							Log.wtf("Objetos que tenemos","Key = " + entry.getKey() + ", Value = " + entry.getValue());
+						}
 
-		  documentReference.set(recorridos).addOnSuccessListener(new OnSuccessListener<Void>() {
-			   @Override
-			   public void onSuccess(Void aVoid) {
-					Toast.makeText(Rene_MapsActivity.this,"Datos actualizados",Toast.LENGTH_SHORT).show();
-					Log.wtf("Atributos creados (Atributos): ", "Datos actualizados");
-					success = true;
-					//actualizarDatosPersonales();
-			   }
-		  }).addOnFailureListener(new OnFailureListener() {
-			   @Override
-			   public void onFailure(@NonNull Exception e) {
-					Toast.makeText(Rene_MapsActivity.this,"¡Algo pasó!",Toast.LENGTH_SHORT).show();
-					Log.d("Algo pasó (Atributos): ", "onFailure: " + e.toString());
-					success = false;
-			   }
-		  });
+						if(document.exists()){
+							Map<String,Object> recorridos = document.getData();
+							recorridos.put(recorridos.size()+"", Arrays.asList(horainicio,horafinal,distancia,pasos, tiempo));
+							docRef.update(recorridos).addOnSuccessListener(new OnSuccessListener<Void>() {
+								@Override
+								public void onSuccess(Void aVoid) {
+									Log.wtf("Usuario creado - ", "onSuccess: user Profile is created for " + userId);
 
-		  // Cuando se actualicen los datos llevar a otra pantalla
-		  Intent i = new Intent(Rene_MapsActivity.this, EjerciciosActivity.class);
-		  startActivity(i);
-		  finish();
-	 }
+								}
+							}).addOnFailureListener(new OnFailureListener() {
+								@Override
+								public void onFailure(@NonNull Exception e) {
+									Log.d("Error usuario:", "onFailure: " + e.toString());
+								}
+							});
+						}
 
-
-	 public void actualizarDatosPersonales(){
-		  DocumentReference documentReference = fStore.collection("recorridos").document(userId);
-		  documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-			   @Override
-			   public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-					Map<String,Object> num = documentSnapshot.getData();
-					Log.wtf("Que", num.size() + "");
-					tamanio = num.size();
-					for (Map.Entry<String,Object> entry : num.entrySet()){
-						 Log.wtf("Viendo que onda","Key = " + entry.getKey() +
-								 ", Value = " + entry.getValue());
-						 //tamanio++;
-						 //Log.wtf("ActualizarDatosPersonales", String.valueOf(tamanio));
 					}
 
-			   }
-		  });
+				}
+			}
+		});
 	 }
 
 					  // Nos encontramos
@@ -490,6 +463,7 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 
 		  return formatTime(segundos, minutos, horas);
 	 }
+
 	 private String formatTime(int segundos, int minutos, int horas){
 
 		  //String f =

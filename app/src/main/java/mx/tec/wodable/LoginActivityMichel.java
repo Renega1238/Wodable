@@ -153,7 +153,7 @@ public class LoginActivityMichel extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }else{
-                            Toast.makeText(LoginActivityMichel.this, "Credenciales equivocadas, intenta de nuevo.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivityMichel.this, "Credenciales equivocadas, intenta de nuevo." + task.getException(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
