@@ -62,6 +62,8 @@ public class EjerciciosActivity extends AppCompatActivity {
                 cambiarAMiCronometro(v);
             }
         });
+
+
         mis_ejercicios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +79,6 @@ public class EjerciciosActivity extends AppCompatActivity {
 
     private void cambiarAMiCronometro(View v) {
         Intent newRace = new Intent(this, Rene_MapsActivity.class);
-
         startActivityForResult(newRace, NEWRACE_CODE);
     }
 
@@ -88,6 +89,8 @@ public class EjerciciosActivity extends AppCompatActivity {
     }
 
     private void cambiarAMisCarreras(View v) {
+        Intent i = new Intent(this, RecyclerActivityRecorridos.class);
+        startActivity(i);
     }
 
 
@@ -95,6 +98,7 @@ public class EjerciciosActivity extends AppCompatActivity {
         Intent i = new Intent(this, ProfileInfoActivity.class);
         startActivity(i);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

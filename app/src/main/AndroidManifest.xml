@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wodable">
         <activity android:name=".Rene_Ejercicios"></activity>
+        <activity android:name=".RutinasActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -30,6 +31,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity android:name=".RecyclerActivityRecorridos" />
         <activity android:name=".EjerciciosActivity" />
         <activity android:name=".edit_info_personal" />
         <activity android:name=".RaceDetailsActivity" />

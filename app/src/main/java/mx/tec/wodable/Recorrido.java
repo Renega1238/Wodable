@@ -1,35 +1,36 @@
 package mx.tec.wodable;
 
+import java.util.Date;
+
 public class Recorrido {
 
-    private String tiempoInicio;
-    private String tiempoFinal;
+    private int id_recorrido;
     private String distancia;
     private String pasos;
+    private String tiempoInicioTotal;
+    private String tiempoFinalTotal;
+    private String tiempo_carrera;
+
+
 
     public Recorrido(){}
 
-    public Recorrido(String tiempoInicio, String tiempoFinal, String distancia, String pasos) {
-        this.tiempoInicio = tiempoInicio;
-        this.tiempoFinal = tiempoFinal;
-        this.distancia = distancia;
-        this.pasos = pasos;
+
+
+    public int getId_recorrido() {
+        return id_recorrido;
     }
 
-    public String getTiempoInicio() {
-        return tiempoInicio;
+    public void setId_recorrido(int id_recorrido) {
+        this.id_recorrido = id_recorrido;
     }
 
-    public void setTiempoInicio(String tiempoInicio) {
-        this.tiempoInicio = tiempoInicio;
+    public String getTiempo_carrera() {
+        return tiempo_carrera;
     }
 
-    public String getTiempoFinal() {
-        return tiempoFinal;
-    }
-
-    public void setTiempoFinal(String tiempoFinal) {
-        this.tiempoFinal = tiempoFinal;
+    public void setTiempo_carrera(String tiempo_carrera) {
+        this.tiempo_carrera = tiempo_carrera;
     }
 
     public String getDistancia() {
@@ -46,5 +47,30 @@ public class Recorrido {
 
     public void setPasos(String pasos) {
         this.pasos = pasos;
+    }
+
+    public String getTiempoInicioTotal() {
+        return tiempoInicioTotal;
+    }
+
+    public Recorrido(int id_recorrido, String distancia, String pasos, String tiempoInicioTotal, String tiempoFinalTotal, String tiempo_carrera) {
+        this.id_recorrido = id_recorrido;
+        this.distancia = distancia;
+        this.pasos = pasos;
+        this.tiempoInicioTotal = tiempoInicioTotal;
+        this.tiempoFinalTotal = tiempoFinalTotal;
+        this.tiempo_carrera = tiempo_carrera;
+    }
+
+    public void setTiempoInicioTotal(String tiempoInicioTotal) {
+        this.tiempoInicioTotal = tiempoInicioTotal;
+    }
+
+    public String getTiempoFinalTotal() {
+        return tiempoFinalTotal;
+    }
+
+    public void setTiempoFinalTotal(String tiempoFinalTotal) {
+        this.tiempoFinalTotal = tiempoFinalTotal;
     }
 }
