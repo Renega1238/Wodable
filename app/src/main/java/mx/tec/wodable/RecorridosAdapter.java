@@ -22,19 +22,23 @@ public class RecorridosAdapter  extends RecyclerView.Adapter<RecorridoViewHolder
     public RecorridoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.recorridorow, parent, false);
         v.setOnClickListener(listener);
-        RecorridoViewHolder friendRow = new RecorridoViewHolder(v);
-        return friendRow;
+        RecorridoViewHolder recorridoRow = new RecorridoViewHolder(v);
+        return recorridoRow;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecorridoViewHolder holder, int position) {
-
+        String pos = String.valueOf(position);
+        int p = HT_Recorridos.get(pos).getId_recorrido() + 1;
+        holder.id_recorrido.setText(p+"");
+        holder.tiempoCarrera.setText(HT_Recorridos.get(pos).getTiempo_carrera());
+        holder.distancia.setText(HT_Recorridos.get(pos).getDistancia());
+        holder.pasos.setText(HT_Recorridos.get(pos).getPasos());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return HT_Recorridos.size();
     }
-
 
 }

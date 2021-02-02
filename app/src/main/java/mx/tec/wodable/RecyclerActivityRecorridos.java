@@ -1,12 +1,16 @@
 package mx.tec.wodable;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -44,14 +48,24 @@ public class RecyclerActivityRecorridos extends AppCompatActivity implements Vie
     private RecyclerView recyclerViewRecorridos;
     private RecorridosAdapter adapter;
 
+    Button b1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_recorridos);
         recyclerViewRecorridos = findViewById(R.id.recycler_recorridos);
         mAuth = FirebaseAuth.getInstance();
-        HT_Recorridos = new Hashtable<>();
 
+        fStore = FirebaseFirestore.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
+
+        Log.wtf("Hash Size",EjerciciosActivity.HT_Recorridos.size()+"");
+        this.adapter = new RecorridosAdapter(EjerciciosActivity.HT_Recorridos, this);
+        Log.wtf("onCreate", EjerciciosActivity.HT_Recorridos.size()+ "");
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerViewRecorridos.setLayoutManager(llm);
+        recyclerViewRecorridos.setAdapter(this.adapter);
     }
 
     @Override
@@ -68,13 +82,7 @@ public class RecyclerActivityRecorridos extends AppCompatActivity implements Vie
         }
 
         userId = mAuth.getCurrentUser().getUid();
-        actualizarRecorridos();
-        /*this.adapter = new RecorridosAdapter(HT_Recorridos, this);
-        Log.wtf("onCreate", HT_Recorridos.size()+ "");
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerViewRecorridos.setLayoutManager(llm);
-        recyclerViewRecorridos.setAdapter(this.adapter);*/
+
     }
 
 
@@ -89,19 +97,15 @@ public class RecyclerActivityRecorridos extends AppCompatActivity implements Vie
                     DocumentSnapshot document = task.getResult();
                     if(document != null){
                         //Map<String,Object> lista_recorridos = document.getData();
-
-
-
                     for(int i=0;i<document.getData().size();i++){
-
                         String index = String.valueOf(i);
                         Recorrido recorridousuario = new Recorrido();
 
                         ArrayList<Object> lista_recorridos = (ArrayList) document.getData().get(index);
                         Log.wtf("Tamaño lista X", lista_recorridos.size()+"");
 
+                        int indice=0;
                         for (Object item: lista_recorridos) {
-                            int indice=0;
                             Log.wtf("Objetos lista X", lista_recorridos.toString()+"");
                             if(indice == 0){
                                 recorridousuario.setTiempoInicioTotal(item.toString());
@@ -133,6 +137,30 @@ public class RecyclerActivityRecorridos extends AppCompatActivity implements Vie
                         for (Map.Entry<String,Recorrido> entry : HT_Recorridos.entrySet()){
                             Log.wtf("Lista de recorridos despues: ","Key = " + entry.getKey() + ", Value = " + entry.getValue());
                         }
+
+                        Recorrido a = HT_Recorridos.get("0");
+
+                        Log.wtf("Objeto A",a.getDistancia());
+                        Log.wtf("Objeto A",a.getPasos());
+                        Log.wtf("Objeto A",a.getTiempo_carrera());
+                        Log.wtf("Objeto A",a.getTiempoFinalTotal());
+                        Log.wtf("Objeto A",a.getId_recorrido()+"");
+
+                        Recorrido b = HT_Recorridos.get("1");
+
+                        Log.wtf("Objeto B",b.getDistancia());
+                        Log.wtf("Objeto B",b.getPasos());
+                        Log.wtf("Objeto B",b.getTiempo_carrera());
+                        Log.wtf("Objeto B",b.getTiempoFinalTotal());
+                        Log.wtf("Objeto B",b.getId_recorrido()+"");
+
+                        Recorrido c = HT_Recorridos.get("2");
+
+                        Log.wtf("Objeto C",c.getDistancia());
+                        Log.wtf("Objeto C",c.getPasos());
+                        Log.wtf("Objeto C",c.getTiempo_carrera());
+                        Log.wtf("Objeto C",c.getTiempoFinalTotal());
+                        Log.wtf("Objeto C",c.getId_recorrido()+"");
 
 
 
@@ -189,8 +217,32 @@ public class RecyclerActivityRecorridos extends AppCompatActivity implements Vie
 
     @Override
     public void onClick(View v) {
-        Log.wtf("Tamano onclick", HT_Recorridos.size()+"");
+        Log.wtf("Tamano onclick", EjerciciosActivity.HT_Recorridos.size()+"");
         int position = recyclerViewRecorridos.getChildLayoutPosition(v);
+
+        String pos = String.valueOf((position));
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(RecyclerActivityRecorridos.this);
+        builder.setCancelable(true);
+        builder.setTitle("Informacion del recorrido");
+        builder.setMessage("Has recorrido: " + EjerciciosActivity.HT_Recorridos.get(pos).getDistancia()
+                + " metros con un total de " + EjerciciosActivity.HT_Recorridos.get(pos).getPasos() + " pasos en "
+                + EjerciciosActivity.HT_Recorridos.get(pos).getTiempo_carrera() + "\nHora inicial: "
+                + EjerciciosActivity.HT_Recorridos.get(pos).getTiempoInicioTotal() + "\nHora Final: "
+                + EjerciciosActivity.HT_Recorridos.get(pos).getTiempoFinalTotal());
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
 
         /*String pos = String.valueOf((position+1));
         String nombre = HT_Recorridos.get(pos).getNombre();

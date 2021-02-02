@@ -23,155 +23,167 @@
         android:id="@+id/lblDatosPersonales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
         android:layout_marginTop="24dp"
         android:text="Datos personales"
         android:textColor="#1535EA"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/saludoProfile"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/saludoProfile" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
         android:text="Peso"
         android:textColor="#121111"
         android:textColorHint="#FFFFFF"
-        app:layout_constraintBaseline_toBaselineOf="@+id/pesoTextView"
-        app:layout_constraintStart_toStartOf="@+id/textView6" />
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="191dp"
         android:text="Altura"
         android:textColor="#131313"
-        app:layout_constraintBaseline_toBaselineOf="@+id/alturaTextView"
-        app:layout_constraintStart_toStartOf="@+id/textView5" />
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/lblBirthday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="98dp"
         android:text="Fecha de nacimiento"
         android:textColor="#0C0C0C"
-        app:layout_constraintBaseline_toBaselineOf="@+id/fechaNacTextView"
-        app:layout_constraintEnd_toEndOf="@+id/lblDatosPersonales" />
-
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblDatosPersonales" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="150dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="93dp"
-        android:layout_marginBottom="94dp"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonEditarDatos"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="165dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="103dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonIrMenu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/IMCTextView"
-        app:srcCompat="@drawable/user" />
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/run" />
+
 
     <Button
         android:id="@+id/buttonEditarDatos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="272dp"
         android:background="@drawable/diseno_botones"
         android:gravity="center"
         android:onClick="editar"
         android:text="Editar datos"
         android:textColor="@drawable/texto_botones"
-        app:layout_constraintBottom_toTopOf="@+id/buttonLogOut"
-        app:layout_constraintEnd_toStartOf="@+id/buttonIrMenu"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/buttonIrMenu"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="Genero"
         android:textColor="#131313"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lblGenero"
-        app:layout_constraintStart_toStartOf="@+id/lblBirthday" />
+        app:layout_constraintStart_toStartOf="@+id/lblBirthday"
+        app:layout_constraintTop_toBottomOf="@+id/lblBirthday" />
 
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
         android:text="I.M.C"
         android:textColor="#0B0A0A"
-        app:layout_constraintBaseline_toBaselineOf="@+id/IMCTextView"
-        app:layout_constraintStart_toStartOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/lblGenero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:text="Genero"
         android:textColor="#131313"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/lblBirthday"
         app:layout_constraintTop_toBottomOf="@+id/lblBirthday" />
 
     <TextView
         android:id="@+id/fechaNacTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="15dp"
         android:text="Fecha"
-        app:layout_constraintStart_toEndOf="@+id/lblBirthday"
-        app:layout_constraintTop_toBottomOf="@+id/lblDatosPersonales" />
+        app:layout_constraintBottom_toBottomOf="@+id/lblBirthday"
+        app:layout_constraintStart_toEndOf="@+id/lblBirthday" />
 
     <TextView
         android:id="@+id/generoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
+        android:layout_marginStart="15dp"
         android:text="Genero"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="@+id/alturaTextView" />
+        app:layout_constraintBottom_toBottomOf="@+id/lblGenero"
+        app:layout_constraintStart_toEndOf="@+id/lblGenero" />
 
     <TextView
         android:id="@+id/alturaTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginStart="15dp"
         android:text="Altura"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/generoTextView" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintStart_toEndOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/pesoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
         android:text="Peso"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/alturaTextView" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView7"
+        app:layout_constraintStart_toEndOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/IMCTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
         android:text="Peso"
-        app:layout_constraintStart_toStartOf="@+id/pesoTextView"
-        app:layout_constraintTop_toBottomOf="@+id/pesoTextView" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintStart_toEndOf="@+id/textView8" />
 
     <Button
         android:id="@+id/buttonIrMenu"
-        android:layout_width="0dp"
+        android:layout_width="141dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="109dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="266dp"
         android:background="@drawable/diseno_botones"
         android:gravity="center"
         android:onClick="goToMenuGrid"
@@ -179,18 +191,22 @@
         android:textColor="@drawable/texto_botones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonEditarDatos" />
+        app:layout_constraintStart_toEndOf="@+id/buttonEditarDatos"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/buttonLogOut"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/diseno_botones"
         android:onClick="logOut"
         android:text="Salir"
         android:textColor="@drawable/texto_botones"
-        app:layout_constraintEnd_toStartOf="@+id/buttonIrMenu"
-        app:layout_constraintTop_toBottomOf="@+id/buttonIrMenu" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonIrMenu"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
