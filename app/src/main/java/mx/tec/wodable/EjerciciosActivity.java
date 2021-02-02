@@ -3,10 +3,15 @@ package mx.tec.wodable;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -18,6 +23,7 @@ public class EjerciciosActivity extends AppCompatActivity {
     private static final int DAILYSTEPS_CODE = 2;
     private static final int NEWRACE_CODE = 3;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,7 @@ public class EjerciciosActivity extends AppCompatActivity {
         mis_pasosdiarios = findViewById(R.id.mis_pasosdiarios);
         mis_cronometro = findViewById(R.id.mi_cronometro);
         mis_ejercicios = findViewById(R.id.mi_ejercicios);
+
 
         mi_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +62,17 @@ public class EjerciciosActivity extends AppCompatActivity {
                 cambiarAMiCronometro(v);
             }
         });
+        mis_ejercicios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cambiarAMisEjercicios(v);
+            }
+        });
+    }
+
+    private void cambiarAMisEjercicios(View v) {
+        Intent misejercicios = new Intent(this, Rene_Ejercicios.class);
+        startActivity(misejercicios);
     }
 
     private void cambiarAMiCronometro(View v) {
@@ -62,6 +80,7 @@ public class EjerciciosActivity extends AppCompatActivity {
 
         startActivityForResult(newRace, NEWRACE_CODE);
     }
+
 
     private void cambiarAMisPasosDiarios(View v) {
         Intent dailysteps = new Intent(this, DailyStepsActivity.class);

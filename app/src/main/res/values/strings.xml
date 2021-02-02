@@ -12,5 +12,30 @@
     <string name="title_activity_race_details">RaceDetailsActivity</string>
     <string name="web_client_id">427970799788-toef8lrd02jg3f870j3nca1ff2kq728n.apps.googleusercontent.com</string>
 
+    <string-array name="Ejercicios">
+        <item>Dance</item>
+        <item>Lunges</item>
+        <item>Pikepushups</item>
+        <item>Pushpress</item>
+        <item>Pushups</item>
+        <item>Run</item>
+        <item>Situps</item>
+        <item>Skipping</item>
+        <item>Squats</item>
+        <item>Yoga</item>
+        </string-array>
+
+    <string-array name="Descripcion">
+        <item>Siente la musica</item>
+        <item>Adelanta un pie manteniendo la espalda recta</item>
+        <item>Con tension en la espalda y los gluteos levantados, toca el piso con la cabeza</item>
+        <item>Del pecho hacia arriba de la cabeza, puede ser con un garrafon</item>
+        <item>Manos a la altura del pecho, bajar con la espalda recta</item>
+        <item>CORRE! Cindy CORRE!</item>
+        <item>Las piernas en mariposa, toca el piso por detras de tu cabeza y toca el piso delante de tus pies</item>
+        <item>Salta la cuerda</item>
+        <item>La espalda recta, piernas separadas a la altura de los hombros, al bajar separa las rodillas</item>
+        <item>Relax, breathe in, breathe out</item>
+    </string-array>
 
 </resources>
