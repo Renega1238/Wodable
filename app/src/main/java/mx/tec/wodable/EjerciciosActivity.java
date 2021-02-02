@@ -69,6 +69,8 @@ public class EjerciciosActivity extends AppCompatActivity {
     }
 
     private void cambiarAMisCarreras(View v) {
+        Intent i = new Intent(this, RecyclerActivityRecorridos.class);
+        startActivity(i);
     }
 
 
