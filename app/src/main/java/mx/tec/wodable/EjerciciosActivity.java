@@ -9,6 +9,8 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -43,6 +45,7 @@ public class EjerciciosActivity extends AppCompatActivity {
 
     protected static Hashtable<String, Recorrido> HT_Recorridos;
 
+    private boolean nuevoUsarioRecorridos = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,20 @@ public class EjerciciosActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Recorrido recorrido = new Recorrido(1, "20", "20", "20", "20", "20");
                 //HT_Recorridos.put("0",recorrido);
-
+                if(nuevoUsarioRecorridos == true){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(EjerciciosActivity.this);
+                    builder.setCancelable(true);
+                    builder.setTitle("Usuario nuevo");
+                    builder.setMessage("No tienes recorridos que mostrar.");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.show();
+                    return;
+                }
                 cambiarAMisCarreras(v);
             }
         });
@@ -128,6 +144,10 @@ public class EjerciciosActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
                     DocumentSnapshot document = task.getResult();
+                    if(document.getData() == null || document.getData().size() <= 0){
+                        nuevoUsarioRecorridos = true;
+                        return;
+                    }
                     if(document != null){
                         //Map<String,Object> lista_recorridos = document.getData();
                         for(int i=0;i<document.getData().size();i++){
@@ -169,10 +189,11 @@ public class EjerciciosActivity extends AppCompatActivity {
                         for (Map.Entry<String,Recorrido> entry : EjerciciosActivity.HT_Recorridos.entrySet()){
                             Log.wtf("Lista de recorridos despues: ","Key = " + entry.getKey() + ", Value = " + entry.getValue());
                         }
+                        nuevoUsarioRecorridos = false;
+                        //Log.wtf("Size hashtable despues de dos for", EjerciciosActivity.HT_Recorridos.size()+"");
+                        //Recorrido a = EjerciciosActivity.HT_Recorridos.get("0");
 
-                        Log.wtf("Size hashtable despues de dos for", EjerciciosActivity.HT_Recorridos.size()+"");
-                        Recorrido a = EjerciciosActivity.HT_Recorridos.get("0");
-
+                        /*
                         Log.wtf("Objeto A",a.getDistancia());
                         Log.wtf("Objeto A",a.getPasos());
                         Log.wtf("Objeto A",a.getTiempo_carrera());
@@ -194,6 +215,8 @@ public class EjerciciosActivity extends AppCompatActivity {
                         Log.wtf("Objeto C",c.getTiempo_carrera());
                         Log.wtf("Objeto C",c.getTiempoFinalTotal());
                         Log.wtf("Objeto C",c.getId_recorrido()+"");
+
+                         */
 
                     }else{
                         Log.wtf("Lista de recorridos: ", "Está vacía");

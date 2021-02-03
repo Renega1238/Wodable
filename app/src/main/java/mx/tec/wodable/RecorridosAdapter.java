@@ -30,10 +30,10 @@ public class RecorridosAdapter  extends RecyclerView.Adapter<RecorridoViewHolder
     public void onBindViewHolder(@NonNull RecorridoViewHolder holder, int position) {
         String pos = String.valueOf(position);
         int p = HT_Recorridos.get(pos).getId_recorrido() + 1;
-        holder.id_recorrido.setText(p+"");
+        holder.id_recorrido.setText("Recorrido " + p);
         holder.tiempoCarrera.setText(HT_Recorridos.get(pos).getTiempo_carrera());
-        holder.distancia.setText(HT_Recorridos.get(pos).getDistancia());
-        holder.pasos.setText(HT_Recorridos.get(pos).getPasos());
+        holder.distancia.setText(HT_Recorridos.get(pos).getDistancia() + " m.  - ");
+        holder.pasos.setText("Pasos: " + HT_Recorridos.get(pos).getPasos() + "  -");
     }
 
     @Override

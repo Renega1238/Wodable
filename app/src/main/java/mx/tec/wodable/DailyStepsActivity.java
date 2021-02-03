@@ -253,7 +253,7 @@ public class DailyStepsActivity extends AppCompatActivity implements SensorEvent
         editor.putInt(PASOSANTERIORES, Integer.parseInt(pasos.getText().toString()));
         editor.commit();
         float distanciaFinal = Distance(Integer.parseInt(pasos.getText().toString()));
-        distancia.setText("Has recorrido un total de: " + String.valueOf(distanciaFinal) + " m");
+        distancia.setText("Has recorrido un total de: " + String.format("%.2f", distanciaFinal) + " m");
         bandera = true;
     }
 

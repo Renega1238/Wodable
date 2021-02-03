@@ -157,6 +157,8 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 					// dejar de contar cuando sale el pop
 					sensorManager.unregisterListener(Rene_MapsActivity.this);
 
+					if(tiempo.getText().toString().equals("00:00:00")){ return; }
+
 					if(timerTask == null)return;
 
 					timerTask.cancel();
@@ -166,7 +168,8 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 					AlertDialog.Builder builder = new AlertDialog.Builder(Rene_MapsActivity.this);
 					builder.setCancelable(true);
 					builder.setTitle("Espera!");
-					builder.setMessage("Estas seguro que deseas parar? Has corrido:  " + String.valueOf(distanciaFinal) + " Km");
+
+					builder.setMessage("Estas seguro que deseas parar? Has corrido:  " + String.format("%.2f",distanciaFinal) + " metros");
 
 					// Dialog alert
 					builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -187,9 +190,9 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 							 horaFinalD = new Date();
 						 	 horafinal = horaFinalD.getTime();
 
-							  Log.wtf("HoraFinal", String.valueOf(horafinal));
+							  //Log.wtf("HoraFinal", String.valueOf(horafinal));
 							  Timestamp horai = new Timestamp(horaFinalD);
-							  Log.wtf("HoraFinal", horai.toString());
+							  //Log.wtf("HoraFinal", horai.toString());
 							  // se detiene
 							  sensorManager.unregisterListener(Rene_MapsActivity.this);
 							  float f = Distance(pasosdado);
@@ -216,7 +219,36 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 		  exit.setOnClickListener(new View.OnClickListener() {
 			   @Override
 			   public void onClick(View v) {
-					finish();
+				if(timeStarted == true){
+					 sensorManager.unregisterListener(Rene_MapsActivity.this);
+					 timerTask.cancel();
+					 AlertDialog.Builder builder = new AlertDialog.Builder(Rene_MapsActivity.this);
+					 builder.setCancelable(true);
+					 builder.setTitle("Advertencia!");
+					 builder.setMessage("Si sales ahora se perdera el progreso");
+
+					 // Dialog alert
+					 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+						  @Override
+						  public void onClick(DialogInterface dialog, int which) {
+							   timeStarted = true;
+							   start.setText("PAUSE");
+							   // seguimos contadno cuando sale
+							   sensorManager.registerListener(Rene_MapsActivity.this,accel, SensorManager.SENSOR_DELAY_FASTEST);
+							   startTimer();
+							   dialog.cancel();
+						  }
+					 });
+					 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+						  @Override
+						  public void onClick(DialogInterface dialog, int which) {
+							   finish();
+						  }
+					 });
+					 builder.show();
+				}else{
+					 finish();
+				}
 			   }
 		  });
 
@@ -234,9 +266,9 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 						 if(tiempo.getText().toString().equals("00:00:00")){
 							 horaInicioD = new Date();
 							 horainicio = horaInicioD.getTime();
-							 Log.wtf("HoraInicio", String.valueOf(horainicio));
+							 //Log.wtf("HoraInicio", String.valueOf(horainicio));
 							 Timestamp horai = new Timestamp(horaInicioD);
-							 Log.wtf("HoraInicio", horai.toString());
+							 //Log.wtf("HoraInicio", horai.toString());
 						 }
 						 startTimer();
 					}else{
@@ -285,9 +317,9 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 
 										horainicio = horaInicioD.getTime();
 
-										Log.wtf("HoraReset", String.valueOf(horainicio));
+										//Log.wtf("HoraReset", String.valueOf(horainicio));
 										Timestamp horai = new Timestamp(horaInicioD);
-										Log.wtf("HoraReset", horai.toString());
+										//Log.wtf("HoraReset", horai.toString());
 
 										startTimer();
 								   }
@@ -325,7 +357,7 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 
 	 public void actualizarDatos(Date horainicio, Date horafinal, String distancia, String pasos, String tiempo) {
 	 	DocumentReference docRef = fStore.collection("recorridos").document(userId);
-	 	Log.wtf("UserID: ", userId+ "");
+	 	//Log.wtf("UserID: ", userId+ "");
 
 	 	docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 			@Override
@@ -353,10 +385,10 @@ public class Rene_MapsActivity extends AppCompatActivity implements GoogleMap.On
 					}else{
 						Map<String,Object> lista_recorridos = document.getData();
 
-						Log.wtf("Tamaño de los datos ", lista_recorridos.size() + "");
+						//Log.wtf("Tamaño de los datos ", lista_recorridos.size() + "");
 
 						for (Map.Entry<String,Object> entry : lista_recorridos.entrySet()){
-							Log.wtf("Objetos que tenemos","Key = " + entry.getKey() + ", Value = " + entry.getValue());
+							//Log.wtf("Objetos que tenemos","Key = " + entry.getKey() + ", Value = " + entry.getValue());
 						}
 
 						if(document.exists()){

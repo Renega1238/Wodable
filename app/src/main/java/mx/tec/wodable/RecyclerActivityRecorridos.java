@@ -230,12 +230,6 @@ public class RecyclerActivityRecorridos extends AppCompatActivity implements Vie
                 + EjerciciosActivity.HT_Recorridos.get(pos).getTiempo_carrera() + "\nHora inicial: "
                 + EjerciciosActivity.HT_Recorridos.get(pos).getTiempoInicioTotal() + "\nHora Final: "
                 + EjerciciosActivity.HT_Recorridos.get(pos).getTiempoFinalTotal());
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
